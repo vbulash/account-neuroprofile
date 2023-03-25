@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply font-black xs:max-lg:text-3xl lg:text-7xl uppercase py-2.5;
+    line-height: 104%;
+    color: #663366;
+  }
+
+  h2 {
+    @apply font-normal xs:max-lg:text-2xl lg:text-5xl uppercase pb-4;
+    line-height: 104%;
+    color: #663366;
+  }
+}
+
+ul.intro {
+    list-style-image: url('/assets/images/list-intro.png');
+}
+
+div.card-body ul {
+    list-style-image: url('/assets/images/list-check.png');
+    list-style-position: outside;
+    margin-left: 57px;
+}
+
+div.card-body ul li::marker {
+    font-size: 24px;
+    line-height: 24px;
+}
+
+.document {
+    @apply text-2xl;
+}
+
+.document h4 {
+    @apply mb-5 text-3xl font-bold text-primary;
+}
+
+.document h5 {
+    @apply mb-4 text-2xl font-semibold text-primary;
+}
+
+.document p {
+    @apply mb-5;
+}
+
+.document strong {
+    @apply text-primary;
+}
+
+.document a {
+    @apply text-primary underline;
+}
+
+.document ul {
+    @apply list-disc list-inside;
+}
+
+.document ul li {
+    @apply pb-2;
+}
