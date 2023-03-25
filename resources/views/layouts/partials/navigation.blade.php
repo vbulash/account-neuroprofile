@@ -1,25 +1,3 @@
-@php
-	// $menu = [];
-	// $menu[] = ['type' => 'item', 'title' => 'Dashboard', 'icon' => 'fa fa-home', 'route' => 'dashboard', 'pattern' => ['dashboard']];
-	// $menu[] = ['type' => 'heading', 'title' => 'Общеобразовательная школа № 1 Якутск'];
-	// $menu[] = [
-	//     'type' => 'submenu',
-	//     'title' => 'Examples',
-	//     'icon' => 'fa fa-lightbulb',
-	//     'pattern' => ['pages.*'],
-	//     'items' => [
-	//         [
-	//             'title' => 'DataTables',
-	//             'route' => 'pages.datatables',
-	//             'pattern' => ['pages.datatables'],
-	//         ],
-	//         ['title' => 'Slick Slider', 'route' => 'pages.slick', 'pattern' => ['pages.slick']],
-	//         ['title' => 'Blank', 'route' => 'pages.blank', 'pattern' => ['pages.blank']],
-	//     ],
-	// ];
-	// $menu[] = ['type' => 'heading', 'title' => 'More'];
-	// $menu[] = ['type' => 'item', 'title' => 'Landing', 'icon' => 'fa fa-globe', 'route' => 'home', 'pattern' => ['home']];
-@endphp
 <ul class="nav-main">
 	@foreach ($menu as $item)
 		@switch($item['type'])

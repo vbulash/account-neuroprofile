@@ -2,16 +2,18 @@
 
 namespace App\Views\Composers;
 
+use App\Http\Controllers\Auth\RoleName;
+use App\Models\Client;
+use App\Models\Contract;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class MenuComposer {
-    public function compose(View $view) {
-        $menu = [];
-        $menu[] = ['type' => 'item', 'title' => 'Dashboard', 'icon' => 'fa fa-home', 'route' => 'dashboard', 'pattern' => ['dashboard']];
-        $menu[] = ['type' => 'heading', 'title' => 'Общеобразовательная школа № 2 Якутск'];
-        $menu[] = [
+
+    protected function genForContract(Contract $contract): iterable {
+        $result = [
             'type' => 'submenu',
-            'title' => 'Examples',
+            'title' => $contract->getTitle(),
             'icon' => 'fa fa-lightbulb',
             'pattern' => ['pages.*'],
             'items' => [
@@ -24,6 +26,26 @@ class MenuComposer {
                 ['title' => 'Blank', 'route' => 'pages.blank', 'pattern' => ['pages.blank']],
             ],
         ];
+        return $result;
+    }
+    protected function genForClient(Client $client): iterable {
+        $result = [];
+        $result[] = ['type' => 'heading', 'title' => $client->getTitle()];
+        foreach ($client->contracts as $contract)
+            $result[] = $this->genForContract($contract);
+
+        return $result;
+    }
+
+    public function compose(View $view) {
+        if (!Auth::check())
+            return;
+        $menu = [];
+        $menu[] = ['type' => 'item', 'title' => 'Главная', 'icon' => 'fa fa-home', 'route' => 'dashboard', 'pattern' => ['dashboard']];
+        if (auth()->user()->hasRole(RoleName::ADMIN->value))
+            foreach (Client::all()->sortBy('name') as $client)
+                $menu = array_merge($menu, $this->genForClient($client));
+
         $menu[] = ['type' => 'heading', 'title' => 'More'];
         $menu[] = ['type' => 'item', 'title' => 'Landing', 'icon' => 'fa fa-globe', 'route' => 'home', 'pattern' => ['home']];
 
