@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\MenuProvider;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -196,6 +197,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Spatie\Permission\PermissionServiceProvider::class,
+
+        MenuProvider::class,
     ],
 
     /*
