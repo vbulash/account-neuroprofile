@@ -255,7 +255,7 @@
 				<!-- Right Section -->
 				<div class="space-x-1">
 					<!-- User Dropdown -->
-					<div class="dropdown d-inline-block">
+					{{-- <div class="dropdown d-inline-block">
 						<button type="button" class="btn btn-alt-secondary" id="page-header-user-dropdown" data-bs-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">
 							<i class="fa fa-fw fa-user d-sm-none"></i>
@@ -292,8 +292,9 @@
 								</a>
 							</div>
 						</div>
-					</div>
+					</div> --}}
 					<!-- END User Dropdown -->
+					@include('layouts.partials.userpanel')
 				</div>
 				<!-- END Right Section -->
 			</div>

@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -10,32 +8,9 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-Route::group(['middleware' => 'auth'], function () {
-    Route::view('/', 'landing')->name('home');
-    // Route::match(['get', 'post'], '/dashboard', function () {
-//     return view('dashboard');
-// })->name('dashboard');
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    Route::view('/pages/slick', 'pages.slick')->name('pages.slick');
-    Route::view('/pages/datatables', 'pages.datatables')->name('pages.datatables');
-    Route::view('/pages/blank', 'pages.blank')->name('pages.blank');
-});
-
-Route::group(['middleware' => 'web'], function () {
+Route::middleware('web')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 
@@ -59,7 +34,7 @@ Route::group(['middleware' => 'web'], function () {
         ->name('password.update');
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::middleware('auth')->group(function () {
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
         ->name('verification.notice');
 
