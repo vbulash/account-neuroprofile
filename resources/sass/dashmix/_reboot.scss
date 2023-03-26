@@ -6,106 +6,237 @@
 
 // inter-300 - latin
 @font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 300;
-  src: local(""),
-    url("../fonts/inter/inter-v11-latin-300.woff2") format("woff2");
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    src: local(""),
+        url("../fonts/inter/inter-v11-latin-300.woff2") format("woff2");
 }
 
 // inter-regular - latin
 @font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  src: local(""),
-    url("../fonts/inter/inter-v11-latin-regular.woff2") format("woff2");
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    src: local(""),
+        url("../fonts/inter/inter-v11-latin-regular.woff2") format("woff2");
 }
 
 // inter-500 - latin
 @font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 500;
-  src: local(""),
-    url("../fonts/inter/inter-v11-latin-500.woff2") format("woff2");
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    src: local(""),
+        url("../fonts/inter/inter-v11-latin-500.woff2") format("woff2");
 }
 
 // inter-600 - latin
 @font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 600;
-  src: local(""),
-    url("../fonts/inter/inter-v11-latin-600.woff2") format("woff2");
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    src: local(""),
+        url("../fonts/inter/inter-v11-latin-600.woff2") format("woff2");
 }
 
 // inter-700 - latin
 @font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 700;
-  src: local(""),
-    url("../fonts/inter/inter-v11-latin-700.woff2") format("woff2");
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 700;
+    src: local(""),
+        url("../fonts/inter/inter-v11-latin-700.woff2") format("woff2");
+}
+
+// Import Source Sans 3
+
+@font-face {
+    font-family: "Source Sans 3";
+    font-style: normal;
+    font-weight: 900;
+    src: local(""),
+        url("../fonts/source-sans-3/SourceSans3-Black.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Source Sans 3";
+    font-style: italic;
+    font-weight: 900;
+    src: local(""),
+        url("../fonts/source-sans-3/SourceSans3-BlackItalic.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Source Sans 3";
+    font-style: normal;
+    font-weight: 700;
+    src: local(""),
+        url("../fonts/source-sans-3/SourceSans3-Bold.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Source Sans 3";
+    font-style: italic;
+    font-weight: 700;
+    src: local(""),
+        url("../fonts/source-sans-3/SourceSans3-BoldItalic.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Source Sans 3";
+    font-style: normal;
+    font-weight: 800;
+    src: local(""),
+        url("../fonts/source-sans-3/SourceSans3-ExtraBold.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Source Sans 3";
+    font-style: italic;
+    font-weight: 800;
+    src: local(""),
+        url("../fonts/source-sans-3/SourceSans3-ExtraBoldItalic.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Source Sans 3";
+    font-style: normal;
+    font-weight: 200;
+    src: local(""),
+        url("../fonts/source-sans-3/SourceSans3-ExtraLight.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Source Sans 3";
+    font-style: italic;
+    font-weight: 200;
+    src: local(""),
+        url("../fonts/source-sans-3/SourceSans3-ExtraLightItalic.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Source Sans 3";
+    font-style: italic;
+    font-weight: 400;
+    src: local(""),
+        url("../fonts/source-sans-3/SourceSans3-Italic.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Source Sans 3";
+    font-style: normal;
+    font-weight: 300;
+    src: local(""),
+        url("../fonts/source-sans-3/SourceSans3-Light.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Source Sans 3";
+    font-style: italic;
+    font-weight: 300;
+    src: local(""),
+        url("../fonts/source-sans-3/SourceSans3-LightItalic.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Source Sans 3";
+    font-style: normal;
+    font-weight: 500;
+    src: local(""),
+        url("../fonts/source-sans-3/SourceSans3-Medium.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Source Sans 3";
+    font-style: italic;
+    font-weight: 500;
+    src: local(""),
+        url("../fonts/source-sans-3/SourceSans3-MediumItalic.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Source Sans 3";
+    font-style: normal;
+    font-weight: 400;
+    src: local(""),
+        url("../fonts/source-sans-3/SourceSans3-Regular.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Source Sans 3";
+    font-style: normal;
+    font-weight: 600;
+    src: local(""),
+        url("../fonts/source-sans-3/SourceSans3-SemiBold.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Source Sans 3";
+    font-style: italic;
+    font-weight: 600;
+    src: local(""),
+        url("../fonts/source-sans-3/SourceSans3-SemiBoldItalic.ttf") format("ttf");
 }
 
 // Emphasis
 b,
 strong {
-  font-weight: $font-weight-bold;
+    font-weight: $font-weight-bold;
 }
 
 // Links
 a {
-  transition: color .12s ease-out;
+    transition: color .12s ease-out;
 
-  @include media-breakpoint-up(sm) {
-    &.link-fx {
-      position: relative;
+    @include media-breakpoint-up(sm) {
+        &.link-fx {
+            position: relative;
 
-      &::before {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        content: '';
-        background-color: $link-color;
-        visibility: hidden;
-        transform: scaleX(0);
-        transform-origin: 0 50%;
-        transition: transform .2s ease-out;
-      }
+            &::before {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                content: '';
+                background-color: $link-color;
+                visibility: hidden;
+                transform: scaleX(0);
+                transform-origin: 0 50%;
+                transition: transform .2s ease-out;
+            }
+        }
     }
-  }
 
-  &.link-fx:hover::before,
-  &.link-fx:focus::before {
-    visibility: visible;
-    transform: scaleX(1);
-  }
+    &.link-fx:hover::before,
+    &.link-fx:focus::before {
+        visibility: visible;
+        transform: scaleX(1);
+    }
 }
 
 // Paragraphs
 p {
-  line-height: $paragraph-line-height;
+    line-height: $paragraph-line-height;
 }
 
 .story p,
 p.story {
-  line-height: $paragraph-line-height;
-  font-size: $font-size-lg;
-  color: $gray-700;
+    line-height: $paragraph-line-height;
+    font-size: $font-size-lg;
+    color: $gray-700;
 
-  @include media-breakpoint-up(sm) {
-    line-height: $paragraph-line-height-lg;
-  }
+    @include media-breakpoint-up(sm) {
+        line-height: $paragraph-line-height-lg;
+    }
 }
 
 .story {
-  h2,
-  h3,
-  h4 {
-    margin-top: 3rem;
-  }
+
+    h2,
+    h3,
+    h4 {
+        margin-top: 3rem;
+    }
 }

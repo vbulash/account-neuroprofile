@@ -7,7 +7,7 @@
 
 			@case('item')
 				<li class="nav-main-item">
-					<a class="nav-main-link{{ request()->routeIs($item['pattern']) ? ' active' : '' }}" href="{{ route($item['route']) }}">
+					<a class="nav-main-link{{ request()->routeIs($item['pattern']) ? ' active' : '' }}" href="{{ $item['link'] }}">
 						<i class="nav-main-link-icon {{ $item['icon'] }}"></i>
 						<span class="nav-main-link-name">{!! $item['title'] !!}</span>
 					</a>
@@ -25,7 +25,7 @@
 						@foreach ($item['items'] as $subitem)
 							<li class="nav-main-item">
 								<a class="nav-main-link{{ request()->routeIs($subitem['pattern']) ? ' open' : '' }}"
-									href="{{ route($subitem['route']) }}">
+									href="{{ $subitem['link'] }}">
 									<span class="nav-main-link-name">{!! $subitem['title'] !!}</span>
 								</a>
 							</li>
