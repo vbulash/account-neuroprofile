@@ -326,6 +326,7 @@
 		<!-- END Footer -->
 	</div>
 	<!-- END Page Container -->
+	@yield('js_end')
 </body>
 
 </html>

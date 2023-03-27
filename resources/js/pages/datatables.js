@@ -21,10 +21,10 @@ class pageTablesDatatables {
     // Override a few defaults
     jQuery.extend(true, jQuery.fn.dataTable.defaults, {
       language: {
-        lengthMenu: "_MENU_",
+        lengthMenu: "<span class='me-2'>Записей на страницу</span> _MENU_",
         search: "_INPUT_",
-        searchPlaceholder: "Search..",
-        info: "Page <strong>_PAGE_</strong> of <strong>_PAGES_</strong>",
+        searchPlaceholder: "Поиск..",
+        info: "Страница <strong>_PAGE_</strong> из <strong>_PAGES_</strong>",
         paginate: {
           first: '<i class="fa fa-angle-double-left"></i>',
           previous: '<i class="fa fa-angle-left"></i>',
@@ -45,19 +45,9 @@ class pageTablesDatatables {
 
     // Init full DataTable
     jQuery('.js-dataTable-full').DataTable({
-      pageLength: 5,
-      lengthMenu: [[5, 10, 20], [5, 10, 20]],
+      pageLength: 50,
+      lengthMenu: [[5, 10, 50], [5, 10, 50]],
       autoWidth: false
-    });
-
-    // Init DataTable with Buttons
-    jQuery('.js-dataTable-buttons').DataTable({
-      pageLength: 5,
-      lengthMenu: [[5, 10, 20], [5, 10, 20]],
-      autoWidth: false,
-      buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
-      dom: "<'row'<'col-sm-12'<'text-center bg-body-light py-2 mb-2'B>>>" +
-            "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>"
     });
   }
 
