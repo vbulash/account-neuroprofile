@@ -7,7 +7,7 @@
 
 			@case('item')
 				<li class="nav-main-item">
-					<a class="nav-main-link{{ request()->is($item['pattern']) ? ' active' : '' }}" href="{{ $item['link'] }}">
+					<a class="nav-main-link{{ urlIs(request(), $item['pattern']) ? ' active' : '' }}" href="{{ $item['link'] }}">
 						<i class="nav-main-link-icon {{ $item['icon'] }}"></i>
 						<span class="nav-main-link-name">{!! $item['title'] !!}</span>
 					</a>
@@ -15,7 +15,7 @@
 			@break
 
 			@case('submenu')
-				<li class="nav-main-item{{ request()->is($item['pattern']) ? ' open' : '' }}">
+				<li class="nav-main-item{{ urlIs(request(), $item['pattern']) ? ' open' : '' }}">
 					<a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true"
 						href="#">
 						<i class="nav-main-link-icon {{ $item['icon'] }}"></i>
@@ -24,7 +24,7 @@
 					<ul class="nav-main-submenu">
 						@foreach ($item['items'] as $subitem)
 							<li class="nav-main-item">
-								<a class="nav-main-link{{ request()->is($subitem['pattern']) ? ' open' : '' }}" href="{{ $subitem['link'] }}">
+								<a class="nav-main-link{{ urlIs(request(), $item['pattern']) ? ' open' : '' }}" href="{{ $subitem['link'] }}">
 									<span class="nav-main-link-name">{!! $subitem['title'] !!}</span>
 								</a>
 							</li>

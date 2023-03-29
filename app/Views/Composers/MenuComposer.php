@@ -27,7 +27,7 @@ class MenuComposer {
                 [
                     'title' => 'Лицензии',
                     'link' => route('contracts.licenses.index', ['contract' => $contract->getKey()]),
-                    'pattern' => ['dashboard'],
+                    'pattern' => route('contracts.licenses.index', ['contract' => $contract->getKey()]),
                 ],
                 [
                     'title' => 'Результаты',
@@ -64,7 +64,7 @@ class MenuComposer {
                 $menu = array_merge($menu, $this->genForClient($client));
 
         $menu[] = ['type' => 'heading', 'title' => 'More'];
-        $menu[] = ['type' => 'item', 'title' => 'Landing', 'icon' => 'fa fa-globe', 'link' => route('home'), 'pattern' => ['home']];
+        $menu[] = ['type' => 'item', 'title' => 'Landing', 'icon' => 'fa fa-globe', 'link' => route('dashboard'), 'pattern' => ['dashboard']];
 
         $view->with('menu', $menu);
     }

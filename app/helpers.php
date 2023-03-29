@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 if (!function_exists('createDropdown')) {
     function createDropdown(string $title, array $items) {
         $out = '';
@@ -42,5 +44,17 @@ EOT, $item['link'], $item['icon'] ?? "fas fa-check", $item['title']);
 </div>
 EOT, $title, $out);
         }
+    }
+}
+
+if (!function_exists('urlIs')) {
+    function urlIs(Request $request, string|array $url): bool {
+        if (is_string($url))
+            return $request->url() == $url;
+        if (is_array($url))
+            foreach ($url as $item)
+                if ($request->url() == $item)
+                    return true;
+        return false;
     }
 }

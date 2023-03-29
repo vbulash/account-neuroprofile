@@ -82,7 +82,7 @@
 	<div id="page-container"
 		class="sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed main-content-narrow page-header-dark">
 		<!-- Side Overlay-->
-		<aside id="side-overlay">
+		{{-- <aside id="side-overlay">
 			<!-- Side Header -->
 			<div class="bg-image"
 				style="background-image: url('{{ asset('media/various/bg_side_overlay_header.jpg', true) }}');">
@@ -195,7 +195,7 @@
 				</div>
 			</div>
 			<!-- END Side Content -->
-		</aside>
+		</aside> --}}
 		<!-- END Side Overlay -->
 
 		<!-- Sidebar -->

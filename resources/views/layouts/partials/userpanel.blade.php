@@ -31,7 +31,7 @@
 				<i class="far fa-fw fa-user me-1"></i> Профиль
 			</a> --}}
 
-			<div role="separator" class="dropdown-divider"></div>
+			{{-- <div role="separator" class="dropdown-divider"></div> --}}
 			<a class="dropdown-item" href="{{ route('logout') }}">
 				<i class="far fa-fw fa-arrow-alt-circle-left me-1"></i> Выход
 			</a>
