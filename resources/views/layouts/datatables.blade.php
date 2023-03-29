@@ -2,8 +2,8 @@
 
 @section('css')
 	<!-- Page JS Plugins CSS -->
-	<link rel="stylesheet" href="{{ asset('js/plugins/datatables-bs5/css/dataTables.bootstrap5.min.css') }}">
-	{{-- <link rel="stylesheet" href="{{ asset('js/plugins/datatables-buttons-bs5/css/buttons.bootstrap5.min.css') }}"> --}}
+	<link rel="stylesheet" href="{{ asset('js/plugins/datatables-bs5/css/dataTables.bootstrap5.min.css', true) }}">
+	<link rel="stylesheet" href="{{ asset('js/plugins/datatables-buttons-bs5/css/buttons.bootstrap5.min.css', true) }}">
 @endsection
 
 @section('js')
@@ -11,11 +11,11 @@
 	<script src="{{ asset('js/lib/jquery.min.js') }}"></script>
 
 	<!-- Page JS Plugins -->
-	<script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-	<script src="{{ asset('js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
-	<script src="{{ asset('js/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-	<script src="{{ asset('js/plugins/datatables-responsive-bs5/js/responsive.bootstrap5.min.js') }}"></script>
-	{{-- <script src="{{ asset('js/plugins/datatables-buttons/dataTables.buttons.min.js') }}"></script> --}}
+	<script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js', true) }}"></script>
+	<script src="{{ asset('js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js', true) }}"></script>
+	<script src="{{ asset('js/plugins/datatables-responsive/js/dataTables.responsive.min.js', true) }}"></script>
+	<script src="{{ asset('js/plugins/datatables-responsive-bs5/js/responsive.bootstrap5.min.js', true) }}"></script>
+	<script src="{{ asset('js/plugins/datatables-buttons/dataTables.buttons.min.js', true) }}"></script>
 	{{-- <script src="{{ asset('js/plugins/datatables-buttons-bs5/js/buttons.bootstrap5.min.js') }}"></script>
   <script src="{{ asset('js/plugins/datatables-buttons-jszip/jszip.min.js') }}"></script>
   <script src="{{ asset('js/plugins/datatables-buttons-pdfmake/pdfmake.min.js') }}"></script>
@@ -41,19 +41,19 @@
 	<!-- Page Content -->
 	<div class="content">
 
+		@yield('pretable')
+
 		<!-- Dynamic Table Full -->
 		<div class="block block-rounded">
 			<div class="block-header block-header-default">
 				@yield('header')
 			</div>
 			<div class="block-content block-content-full">
-				<div class="table-responsive">
-					<table class="table table-bordered table-hover text-nowrap" id="datatable" style="width: 100%;">
-						<thead>
-							@yield('thead')
-						</thead>
-					</table>
-				</div>
+				<table class="table responsive table-bordered table-hover text-nowrap" id="datatable" style="width: 100%;">
+					<thead>
+						@yield('thead')
+					</thead>
+				</table>
 			</div>
 		</div>
 		<!-- END Dynamic Table Full -->

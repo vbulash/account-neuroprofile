@@ -38,6 +38,9 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::resource('/contracts.licenses', LicenseController::class);
     Route::get('/contracts/{contract}/licenses', [LicenseController::class, 'index'])->name('contracts.licenses.index');
     Route::get('/contracts/{contract}/licenses.data', [LicenseController::class, 'getData'])->name('contracts.licenses.index.data');
+    Route::post('/contracts/{contract}/licenses.export', [LicenseController::class, 'export'])->name('contracts.licenses.export');
+    Route::post('/contracts/{contract}/licenses.repair', [LicenseController::class, 'repair'])->name('contracts.licenses.repair');
+    Route::post('/contracts/{contract}/licenses.info', [LicenseController::class, 'info'])->name('contracts.licenses.info');
 });
 
 Route::group(['middleware' => 'web'], function () {

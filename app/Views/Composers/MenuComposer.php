@@ -15,7 +15,9 @@ class MenuComposer {
             'type' => 'submenu',
             'title' => $contract->getTitle(),
             'icon' => 'fa fa-lightbulb',
-            'pattern' => ['pages.*'],
+            'pattern' => [
+                route('contracts.licenses.index', ['contract' => $contract->getKey()])
+            ],
             'items' => [
                 [
                     'title' => 'Общие сведения',

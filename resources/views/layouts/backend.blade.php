@@ -7,15 +7,18 @@
 
 	<title>{{ env('APP_NAME') }}</title>
 
+	<!-- CSRF Token -->
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+
 	<meta name="description"
 		content="Dashmix - Bootstrap 5 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
 	<meta name="author" content="pixelcave">
 	<meta name="robots" content="noindex, nofollow">
 
 	<!-- Icons -->
-	<link rel="shortcut icon" href="{{ asset('media/favicons/favicon.png') }}">
-	<link rel="icon" sizes="192x192" type="image/png" href="{{ asset('media/favicons/favicon-192x192.png') }}">
-	<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('media/favicons/apple-touch-icon-180x180.png') }}">
+	<link rel="shortcut icon" href="{{ asset('media/favicons/favicon.png', true) }}">
+	<link rel="icon" sizes="192x192" type="image/png" href="{{ asset('media/favicons/favicon-192x192.png', true) }}">
+	<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('media/favicons/apple-touch-icon-180x180.png', true) }}">
 
 	<!-- Modules -->
 	@yield('css')
@@ -81,12 +84,13 @@
 		<!-- Side Overlay-->
 		<aside id="side-overlay">
 			<!-- Side Header -->
-			<div class="bg-image" style="background-image: url('{{ asset('media/various/bg_side_overlay_header.jpg') }}');">
+			<div class="bg-image"
+				style="background-image: url('{{ asset('media/various/bg_side_overlay_header.jpg', true) }}');">
 				<div class="bg-primary-op">
 					<div class="content-header">
 						<!-- User Avatar -->
 						<a class="img-link me-1" href="javascript:void(0)">
-							<img class="img-avatar img-avatar48" src="{{ asset('media/avatars/avatar10.jpg') }}" alt="">
+							<img class="img-avatar img-avatar48" src="{{ asset('media/avatars/avatar10.jpg', true) }}" alt="">
 						</a>
 						<!-- END User Avatar -->
 
@@ -320,12 +324,20 @@
 			@yield('content')
 		</main>
 		<!-- END Main Container -->
+		@include('layouts.partials.modal-confirm')
 
 		<!-- Footer -->
 		@include('layouts.partials.footer')
 		<!-- END Footer -->
 	</div>
 	<!-- END Page Container -->
+	<script src="{{ asset('js/plugins/bootstrap-notify/bootstrap-notify.min.js', true) }}"></script>
+	<script>
+		jQuery(function() {
+			// Dashmix.helpers('notify');
+			Dashmix.helpersOnLoad(['jq-notify']);
+		});
+	</script>
 	@yield('js_end')
 </body>
 

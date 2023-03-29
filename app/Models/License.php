@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Лицензия
@@ -22,5 +23,9 @@ class License extends Model {
 
     public function contract(): BelongsTo {
         return $this->belongsTo(Contract::class);
+    }
+
+    public function history(): HasOne {
+        return $this->hasOne(History::class);
     }
 }
