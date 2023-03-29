@@ -24,7 +24,7 @@
 					<ul class="nav-main-submenu">
 						@foreach ($item['items'] as $subitem)
 							<li class="nav-main-item">
-								<a class="nav-main-link{{ urlIs(request(), $item['pattern']) ? ' open' : '' }}" href="{{ $subitem['link'] }}">
+								<a class="nav-main-link{{ urlIs(request(), $subitem['pattern']) ? ' open' : '' }}" href="{{ $subitem['link'] }}">
 									<span class="nav-main-link-name">{!! $subitem['title'] !!}</span>
 								</a>
 							</li>

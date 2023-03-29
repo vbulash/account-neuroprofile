@@ -12,8 +12,8 @@
 // @import 'component1';
 
 a {
-    .nav-main-link {
-        .open {
+    &.nav-main-link {
+        &.open {
             color: white !important;
             font-weight: 500 !important;
         }
