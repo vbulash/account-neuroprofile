@@ -21,6 +21,8 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('media/favicons/apple-touch-icon-180x180.png', true) }}">
 
 	<!-- Modules -->
+	<link rel="stylesheet" href="{{ asset('js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css', true) }}">
+	<link rel="stylesheet" href="{{ asset('js/plugins/flatpickr/flatpickr.min.css', true) }}">
 	@yield('css')
 	{{-- @vite(['resources/sass/main.scss', 'resources/js/dashmix/app.js']) --}}
 
@@ -331,11 +333,13 @@
 		<!-- END Footer -->
 	</div>
 	<!-- END Page Container -->
-	<script src="{{ asset('js/plugins/bootstrap-notify/bootstrap-notify.min.js', true) }}"></script>
+	<script src="/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
+	<script src="/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+	<script src="/js/plugins/flatpickr/flatpickr.min.js"></script>
+
 	<script>
 		jQuery(function() {
-			// Dashmix.helpers('notify');
-			Dashmix.helpersOnLoad(['jq-notify']);
+			Dashmix.helpersOnLoad(['jq-notify', 'jq-datepicker']);
 		});
 	</script>
 	@yield('js_end')

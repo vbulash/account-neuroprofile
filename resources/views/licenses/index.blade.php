@@ -35,6 +35,8 @@
 		<div class="block-content block-content-full">
 			<table id="info"></table>
 		</div>
+		<x-forms.text-input name="number" title="Номер контракта" value="asdfgh jklll" />
+		<x-forms.date-input name="since" title="Дата контракта" />
 	</div>
 @endsection
 
