@@ -10,19 +10,24 @@ use Illuminate\View\View;
 
 class MenuComposer {
 
-	protected function genForContract(Contract $contract): iterable {
+	protected function genForContract(Client $client, Contract $contract): iterable {
 		$result = [
 			'type' => 'submenu',
 			'title' => $contract->getTitle(),
 			'icon' => 'fa fa-lightbulb',
 			'pattern' => [
+				route('clients.contracts.show', ['client' => $client->getKey(), 'contract' => $contract->getKey()]),
+				route('clients.contracts.edit', ['client' => $client->getKey(), 'contract' => $contract->getKey()]),
 				route('contracts.licenses.index', ['contract' => $contract->getKey()])
 			],
 			'items' => [
 				[
 					'title' => 'Общие сведения',
-					'link' => '',
-					'pattern' => '',
+					'link' => route('clients.contracts.show', ['client' => $client->getKey(), 'contract' => $contract->getKey()]),
+					'pattern' => [
+						route('clients.contracts.show', ['client' => $client->getKey(), 'contract' => $contract->getKey()]),
+						route('clients.contracts.edit', ['client' => $client->getKey(), 'contract' => $contract->getKey()]),
+					]
 				],
 				[
 					'title' => 'Лицензии',
@@ -49,7 +54,7 @@ class MenuComposer {
 		$result = [];
 		$result[] = ['type' => 'heading', 'title' => $client->getTitle()];
 		foreach ($client->contracts as $contract)
-			$result[] = $this->genForContract($contract);
+			$result[] = $this->genForContract($client, $contract);
 
 		return $result;
 	}

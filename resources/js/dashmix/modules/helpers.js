@@ -5,9 +5,6 @@
  *
  */
 
-
-import { Russian } from 'flatpickr/dist/l10n/ru.js';
-
 // Helper variables
 let jqSparklineResize = false;
 let jqSparklineTimeout;
@@ -671,16 +668,32 @@ export default class Helpers {
 	 *
 	 */
 	static jqDatepicker() {
+		$.fn.datepicker.dates['ru'] = {
+			days: ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"],
+			daysShort: ["Вск", "Пнд", "Втр", "Срд", "Чтв", "Птн", "Суб"],
+			daysMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+			months: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+			monthsShort: ["Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"],
+			today: "Сегодня",
+			clear: "Очистить",
+			format: "dd.mm.yyyy",
+			weekStart: 1,
+			monthsTitle: 'Месяцы'
+		};
+
 		// Init datepicker (with .js-datepicker and .input-daterange class)
 		jQuery('.js-datepicker:not(.js-datepicker-enabled)').add('.input-daterange:not(.js-datepicker-enabled)').each((index, element) => {
 			let el = jQuery(element);
 
 			// Add .js-datepicker-enabled class to tag it as activated and init it
 			el.addClass('js-datepicker-enabled').datepicker({
-				locale: Russian,
-				weekStart: el.data('week-start') || 0,
-				autoclose: el.data('autoclose') || false,
-				todayHighlight: el.data('today-highlight') || false,
+				format: "d.mm.yyyy",
+				assumeNearbyYear: true,
+				clearBtn: true,
+				language: "ru",
+				weekStart: el.data('week-start') || 1,
+				autoclose: el.data('autoclose') || true,
+				todayHighlight: el.data('today-highlight') || true,
 				startDate: el.data('start-date') || false,
 				container: el.data('container') || '#page-container',
 				orientation: 'bottom' // Position issue when using BS5, set it to bottom until officially supported
@@ -831,7 +844,7 @@ export default class Helpers {
 					offset: options.offset || 20,
 					spacing: options.spacing || 10,
 					z_index: options.z_index || 1033,
-					delay: options.delay || 5000,
+					delay: options.delay || 10000,
 					timer: options.timer || 1000,
 					animate: {
 						enter: options.animate_enter || 'animated fadeIn',

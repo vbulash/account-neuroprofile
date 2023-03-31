@@ -28,7 +28,7 @@
 
 	<!-- Alternatively, you can also include a specific color theme after the main stylesheet to alter the default color theme of the template -->
 	@vite(['resources/sass/main.scss', 'resources/sass/dashmix/themes/xsmooth.scss', 'resources/js/dashmix/app.js'])
-	@yield('js')
+	@stack('js')
 </head>
 
 <body>
@@ -333,16 +333,41 @@
 		<!-- END Footer -->
 	</div>
 	<!-- END Page Container -->
-	<script src="/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
-	<script src="/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-	<script src="/js/plugins/flatpickr/flatpickr.min.js"></script>
+	<!-- jQuery (required for DataTables plugin) -->
+	<script src="{{ asset('js/lib/jquery.min.js') }}"></script>
+
+	<script src="{{ asset('js/plugins/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
+	<script src="{{ asset('js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
 
 	<script>
 		jQuery(function() {
 			Dashmix.helpersOnLoad(['jq-notify', 'jq-datepicker']);
+			@if ($errors->any())
+				@foreach ($errors->all() as $error)
+					Dashmix.helpers('jq-notify', {
+						from: 'bottom',
+						type: 'danger',
+						delay: 0,
+						icon: 'fas fa-ban me-2',
+						message: "{{ $error }}"
+					});
+				@endforeach
+			@endif
+			@if (session()->has('success'))
+				Dashmix.helpers('jq-notify', {
+					from: 'bottom',
+					type: 'success',
+					delay: 0,
+					icon: 'fas fa-check me-2',
+					message: "{{ session('success') }}"
+				});
+				@php
+					session()->forget('success');
+				@endphp
+			@endif
 		});
 	</script>
-	@yield('js_end')
+	@stack('js_end')
 </body>
 
 </html>

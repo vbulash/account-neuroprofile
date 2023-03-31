@@ -3,7 +3,7 @@
 @section('header')
 	<div class="d-flex align-items-start">
 		<div class="d-flex flex-column justify-content-start align-items-start me-5">
-			<h3 class="block-title">Список лицензий контракта</h3>
+			<h3 class="block-title">Список лицензий договора</h3>
 			<h3 class="block-title mb-2"><small>Здесь вы можете отфильтровать лицензии по статусам, исправить проблемы с лицензиями
 					из-за сбоев и экспортировать лицензии в формате Excel</small></h3>
 			<form action="{{ route('contracts.licenses.export', ['contract' => $contract]) }}" method="post" id="export">
@@ -26,7 +26,7 @@
 @section('pretable')
 	<div class="block block-rounded">
 		<div class="block-header block-header-default">
-			<h3 class="block-title">Статистика лицензий контракта</h3>
+			<h3 class="block-title">Статистика лицензий договора</h3>
 			<div class="block-options">
 				<button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"><i
 						class="si si-arrow-up"></i></button>
@@ -35,8 +35,6 @@
 		<div class="block-content block-content-full">
 			<table id="info"></table>
 		</div>
-		<x-forms.text-input name="number" title="Номер контракта" value="asdfgh jklll" />
-		<x-forms.date-input name="since" title="Дата контракта" />
 	</div>
 @endsection
 
@@ -49,7 +47,7 @@
 	</tr>
 @endsection
 
-@section('js_end')
+@push('js_end')
 	<script>
 		function statistics() {
 			$.ajax({
@@ -203,4 +201,4 @@
 			statistics();
 		});
 	</script>
-@endsection
+@endpush

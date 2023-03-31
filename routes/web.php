@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\ContractController;
 use App\Http\Controllers\LicenseController;
 
 /*
@@ -31,7 +32,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::view('/pages/datatables', 'pages.datatables')->name('pages.datatables');
 	Route::view('/pages/blank', 'pages.blank')->name('pages.blank');
 
-	// Route::resource('/contracts.licenses', LicenseController::class);
+	// Контракты клиента
+	Route::get('/clients/{client}/contracts/{contract}', [ContractController::class, 'show'])->name('clients.contracts.show');
+	Route::get('/clients/{client}/contracts/{contract}/edit', [ContractController::class, 'edit'])->name('clients.contracts.edit');
+	Route::put('/clients/{client}/contracts/{contract}', [ContractController::class, 'update'])->name('clients.contracts.update');
+	// Лицензии контракта
 	Route::get('/contracts/{contract}/licenses', [LicenseController::class, 'index'])->name('contracts.licenses.index');
 	Route::get('/contracts/{contract}/licenses.data', [LicenseController::class, 'getData'])->name('contracts.licenses.index.data');
 	Route::post('/contracts/{contract}/licenses.export', [LicenseController::class, 'export'])->name('contracts.licenses.export');

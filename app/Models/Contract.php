@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Контракт клиента
+ * договор клиента
  *
  * @property string $number
  * @property string $invoice
@@ -22,30 +22,35 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $status
  */
 class Contract extends Model {
-    use HasFactory;
+	use HasFactory;
 
-    protected $fillable = [
-        'number',
-        'invoice',
-        'start',
-        'end',
-        'email',
-        'commercial',
-        'mkey',
-        'license_count',
-        'url',
-        'status',
-    ];
+	protected $fillable = [
+		'number',
+		'invoice',
+		'start',
+		'end',
+		'email',
+		'commercial',
+		'mkey',
+		'license_count',
+		'url',
+		'status',
+	];
 
-    public function getTitle(): string {
-        return 'Договор № ' . $this->number;
-    }
+	protected $casts = [
+		'start' => 'datetime',
+		'end' => 'datetime',
+	];
 
-    public function client(): BelongsTo {
-        return $this->belongsTo(Client::class);
-    }
+	public function getTitle(): string {
+		return 'Договор № ' . $this->number;
+	}
 
-    public function licenses(): HasMany {
-        return $this->hasMany(License::class);
-    }
+	public function client(): BelongsTo {
+		return $this->belongsTo(Client::class);
+	}
+
+	public function licenses(): HasMany {
+		return $this->hasMany(License::class);
+	}
 }

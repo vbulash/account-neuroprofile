@@ -6,16 +6,13 @@
 	<link rel="stylesheet" href="{{ asset('js/plugins/datatables-buttons-bs5/css/buttons.bootstrap5.min.css', true) }}">
 @endsection
 
-@section('js')
-	<!-- jQuery (required for DataTables plugin) -->
-	<script src="{{ asset('js/lib/jquery.min.js') }}"></script>
-
+@push('js_end')
 	<!-- Page JS Plugins -->
-	<script src="/js/plugins/datatables/jquery.dataTables.min.js"></script>
-	<script src="/js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js"></script>
-	<script src="/js/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-	<script src="/js/plugins/datatables-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
-	<script src="/js/plugins/datatables-buttons/dataTables.buttons.min.js"></script>
+	<script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
+	<script src="{{ asset('js/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+	<script src="{{ asset('js/plugins/datatables-responsive-bs5/js/responsive.bootstrap5.min.js') }}"></script>
+	<script src="{{ asset('js/plugins/datatables-buttons/dataTables.buttons.min.js') }}"></script>
 	{{-- <script src="{{ asset('js/plugins/datatables-buttons-bs5/js/buttons.bootstrap5.min.js') }}"></script>
   <script src="{{ asset('js/plugins/datatables-buttons-jszip/jszip.min.js') }}"></script>
   <script src="{{ asset('js/plugins/datatables-buttons-pdfmake/pdfmake.min.js') }}"></script>
@@ -25,7 +22,7 @@
 
 	<!-- Page JS Code -->
 	{{-- @vite(['resources/js/pages/datatables.js']) --}}
-@endsection
+@endpush
 
 @section('content')
 	<!-- Hero -->
