@@ -5,8 +5,8 @@
 			{!! isset($required) && !isset($disabled) ? " <span class='required'>*</span>" : '' !!}
 		</label>
 		<div class="col-sm-5">
-			<input type="{{ $type ?? 'text' }}" class="form-control" id="{{ $name }}" name="{{ $name }}"
-				autocomplete="off" value="{{ isset($value) ? $value : '' }}" {{ isset($disabled) ? 'disabled' : '' }} />
+			<textarea class="form-control" id="{{ $name }}" name="{{ $name }}" rows="{{ $rows ?? 5 }}"
+			 {{ isset($disabled) ? 'disabled' : '' }}>{!! $value ?? '' !!}</textarea>
 		</div>
 		{{ $slot }}
 	</div>

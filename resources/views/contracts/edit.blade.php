@@ -3,7 +3,7 @@
 @section('body')
 	<div class="block block-rounded">
 		<div class="block-header block-header-default d-flex flex-column align-items-start">
-			<h3 class="block-title">Редактирование деталей договора</h3>
+			<h3 class="block-title">Изменение деталей договора</h3>
 			<h3 class="block-title mb-2"><small>Символом <span class="required">*</span> отмечены обязательные поля</small></h3>
 		</div>
 		<div class="block-content block-content-full p4">
@@ -32,8 +32,9 @@
 							с лицензиями договора <i class="fas fa-chevron-right"></i></a>
 					</div>
 				</x-forms.text-input>
-				<x-forms.text-input name="email" title="Электронная почта договора" value="{{ $contract->email }}" />
-				<x-forms.text-input name="url" title="URL страницы сайта из договора" value="{{ $contract->url }}"
+				<x-forms.text-input name="email" type="email" title="Электронная почта договора"
+					value="{{ $contract->email }}" />
+				<x-forms.text-input name="url" type="url" title="URL страницы сайта из договора" value="{{ $contract->url }}"
 					required="true" />
 				<x-forms.text-input name="mkey" title="Мастер-ключ договора" value="{{ $contract->mkey }}" disabled="true" />
 

@@ -15,24 +15,26 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $address
  * @property string $phone
  * @property string $email
+ * @property string $url
  */
 class Client extends Model implements Titleable {
-    use HasFactory;
+	use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'inn',
-        'ogrn',
-        'address',
-        'phone',
-        'email'
-    ];
+	protected $fillable = [
+		'name',
+		'inn',
+		'ogrn',
+		'address',
+		'phone',
+		'email',
+		'url'
+	];
 
-    public function getTitle(): string {
-        return $this->name;
-    }
+	public function getTitle(): string {
+		return $this->name;
+	}
 
-    public function contracts(): HasMany {
-        return $this->hasMany(Contract::class);
-    }
+	public function contracts(): HasMany {
+		return $this->hasMany(Contract::class);
+	}
 }

@@ -53,6 +53,17 @@ class MenuComposer {
 	protected function genForClient(Client $client): iterable {
 		$result = [];
 		$result[] = ['type' => 'heading', 'title' => $client->getTitle()];
+		// Route::get('/clients/{client}', [ClientController::class, 'show'])->name(('clients.show'));
+		$result[] = [
+			'type' => 'item',
+			'title' => 'Общие сведения',
+			'icon' => 'fas fa-building',
+			'link' => route('clients.show', ['client' => $client->getKey()]),
+			'pattern' => [
+				route('clients.show', ['client' => $client->getKey()]),
+				route('clients.edit', ['client' => $client->getKey()]),
+			]
+		];
 		foreach ($client->contracts as $contract)
 			$result[] = $this->genForContract($client, $contract);
 

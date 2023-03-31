@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\LicenseController;
 
@@ -32,6 +33,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::view('/pages/datatables', 'pages.datatables')->name('pages.datatables');
 	Route::view('/pages/blank', 'pages.blank')->name('pages.blank');
 
+	// Клиенты
+	Route::get('/clients/{client}', [ClientController::class, 'show'])->name(('clients.show'));
+	Route::get('/clients/{client}/edit', [ClientController::class, 'edit'])->name(('clients.edit'));
+	Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
 	// Контракты клиента
 	Route::get('/clients/{client}/contracts/{contract}', [ContractController::class, 'show'])->name('clients.contracts.show');
 	Route::get('/clients/{client}/contracts/{contract}/edit', [ContractController::class, 'edit'])->name('clients.contracts.edit');
