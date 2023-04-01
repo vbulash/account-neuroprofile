@@ -27,9 +27,9 @@
 				<x-forms.text-input name="license_count" title="Количество лицензий договора" value="{{ $contract->license_count }}"
 					disabled="true">
 					<div class="col-sm-4">
-						<a href="{{ route('contracts.licenses.index', ['contract' => $contract->getKey()]) }}"
-							class="btn btn-primary">Работа
-							с лицензиями договора <i class="fas fa-chevron-right"></i></a>
+						<p><small>Количество лицензий может быть изменено только в бОльшую сторону (довыпуск лицензий).
+								Данная операция выполняется в &laquo;Платформе нейропрофилирования&raquo; при наличии соответствующих
+								прав.</small></p>
 					</div>
 				</x-forms.text-input>
 				<x-forms.text-input name="email" type="email" title="Электронная почта договора"

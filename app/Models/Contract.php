@@ -24,6 +24,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Contract extends Model {
 	use HasFactory;
 
+	public const ACTIVE = 'Активный';
+	public const INACTIVE = 'Неактивный';
+	public const COMPLETE_BY_DATE = 'Истёк';
+	public const COMPLETE_BY_COUNT = 'Закончились лицензии';
+
 	protected $fillable = [
 		'number',
 		'invoice',

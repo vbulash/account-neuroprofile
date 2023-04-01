@@ -43,9 +43,7 @@ class LicenseController extends Controller {
 			})
 			->make(true);
 	}
-	/**
-	 * Display a listing of the resource.
-	 */
+
 	public function index(int $contract) {
 		$_contract = Contract::findOrFail($contract);
 		$heading = sprintf("Лицензии договора № %s клиента &laquo;%s&raquo;", $_contract->number, $_contract->client->getTitle());
@@ -54,48 +52,6 @@ class LicenseController extends Controller {
 			'contract' => $contract,
 			'heading' => $heading,
 		]);
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 */
-	public function create() {
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 */
-	public function store(Request $request) {
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 */
-	public function show(string $id) {
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 */
-	public function edit(string $id) {
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 */
-	public function update(Request $request, string $id) {
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 */
-	public function destroy(string $id) {
-		//
 	}
 
 	public function export(int $contract) {
@@ -161,16 +117,6 @@ class LicenseController extends Controller {
 
 	public function info(int $contract): iterable {
 		$_contract = Contract::findOrFail($contract);
-		$result = [
-			[
-				'name' => 'Все лицензии',
-				'count' => $_contract->licenses->count()
-			],
-			[
-				'name' => 'Лицензии по статусам:',
-				'count' => ' '
-			]
-		];
 		$statuses = $_contract->licenses->groupBy('status')->toArray();
 		foreach (LicenseStatus::cases() as $status)
 			$result[] = [

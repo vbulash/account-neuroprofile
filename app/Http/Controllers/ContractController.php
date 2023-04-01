@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateContractRequest;
 use App\Models\Client;
 use App\Models\Contract;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\DataTables;
 
 class ContractController extends Controller {
+
 	public function show(int $client, int $contract) {
 		return $this->edit($client, $contract, false);
 	}
