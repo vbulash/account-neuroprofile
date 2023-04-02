@@ -11,6 +11,28 @@ use Illuminate\View\View;
 class MenuComposer {
 
 	protected function genForContract(Client $client, Contract $contract): iterable {
+		$items = [];
+		$items[] = [
+			'title' => 'Общие сведения',
+			'link' => route('clients.contracts.show', ['client' => $client->getKey(), 'contract' => $contract->getKey()]),
+			'pattern' => [
+				route('clients.contracts.show', ['client' => $client->getKey(), 'contract' => $contract->getKey()]),
+				route('clients.contracts.edit', ['client' => $client->getKey(), 'contract' => $contract->getKey()])
+			]
+		];
+		$items[] = [
+			'title' => 'Лицензии',
+			'link' => route('contracts.licenses.index', ['contract' => $contract->getKey()]),
+			'pattern' => route('contracts.licenses.index', ['contract' => $contract->getKey()]),
+		];
+		if ($contract->test->history->count() > 0)
+			$items[] = [
+				'title' => 'Результаты',
+				'link' => route('contracts.history.index', ['contract' => $contract->getKey()]),
+				'pattern' => [
+					route('contracts.history.index', ['contract' => $contract->getKey()])
+				],
+			];
 		$result = [
 			'type' => 'submenu',
 			'title' => $contract->getTitle(),
@@ -18,35 +40,17 @@ class MenuComposer {
 			'pattern' => [
 				route('clients.contracts.show', ['client' => $client->getKey(), 'contract' => $contract->getKey()]),
 				route('clients.contracts.edit', ['client' => $client->getKey(), 'contract' => $contract->getKey()]),
-				route('contracts.licenses.index', ['contract' => $contract->getKey()])
+				route('contracts.licenses.index', ['contract' => $contract->getKey()]),
+				route('contracts.history.index', ['contract' => $contract->getKey()])
 			],
-			'items' => [
-				[
-					'title' => 'Общие сведения',
-					'link' => route('clients.contracts.show', ['client' => $client->getKey(), 'contract' => $contract->getKey()]),
-					'pattern' => [
-						route('clients.contracts.show', ['client' => $client->getKey(), 'contract' => $contract->getKey()]),
-						route('clients.contracts.edit', ['client' => $client->getKey(), 'contract' => $contract->getKey()]),
-					]
-				],
-				[
-					'title' => 'Лицензии',
-					'link' => route('contracts.licenses.index', ['contract' => $contract->getKey()]),
-					'pattern' => route('contracts.licenses.index', ['contract' => $contract->getKey()]),
-				],
-				[
-					'title' => 'Результаты',
-					'link' => '',
-					'pattern' => '',
-				],
-				// [
-				//     'title' => 'DataTables',
-				//     'route' => 'pages.datatables',
-				//     'pattern' => ['pages.datatables'],
-				// ],
-				// ['title' => 'Slick Slider', 'route' => 'pages.slick', 'pattern' => ['pages.slick']],
-				// ['title' => 'Blank', 'route' => 'pages.blank', 'pattern' => ['pages.blank']],
-			],
+			'items' => $items,
+			// [
+			//     'title' => 'DataTables',
+			//     'route' => 'pages.datatables',
+			//     'pattern' => ['pages.datatables'],
+			// ],
+			// ['title' => 'Slick Slider', 'route' => 'pages.slick', 'pattern' => ['pages.slick']],
+			// ['title' => 'Blank', 'route' => 'pages.blank', 'pattern' => ['pages.blank']
 		];
 		return $result;
 	}

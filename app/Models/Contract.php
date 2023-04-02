@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * договор клиента
@@ -57,5 +58,9 @@ class Contract extends Model {
 
 	public function licenses(): HasMany {
 		return $this->hasMany(License::class);
+	}
+
+	public function test(): HasOne {
+		return $this->hasOne(Test::class);
 	}
 }

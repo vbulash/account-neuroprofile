@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ContractController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\LicenseController;
 
 /*
@@ -47,6 +48,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/contracts/{contract}/licenses.export', [LicenseController::class, 'export'])->name('contracts.licenses.export');
 	Route::post('/contracts/{contract}/licenses.repair', [LicenseController::class, 'repair'])->name('contracts.licenses.repair');
 	Route::post('/contracts/{contract}/licenses.info', [LicenseController::class, 'info'])->name('contracts.licenses.info');
+	// Результаты прохождения тестирования
+	Route::get('/contracts/{contract}/history', [HistoryController::class, 'index'])->name('contracts.history.index');
+	Route::get('/contracts/{contract}/history.data', [HistoryController::class, 'getData'])->name('contracts.history.index.data');
 });
 
 Route::group(['middleware' => 'web'], function () {
