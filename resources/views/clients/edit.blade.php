@@ -6,7 +6,7 @@
 			<h3 class="block-title">Изменение деталей клиента</h3>
 			<h3 class="block-title mb-2"><small>Символом <span class="required">*</span> отмечены обязательные поля</small></h3>
 		</div>
-		<div class="block-content block-content-full p4">
+		<div class="block-content block-content-full p-4">
 			<form action="{{ route('clients.update', ['client' => $client->getKey()]) }}" method="post"
 				enctype="multipart/form-data">
 				@method('PUT')

@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property \Datetime $done
  * @property string $card
+ * @property string $code
  */
 class History extends Model {
 	use HasFactory;
@@ -20,6 +21,7 @@ class History extends Model {
 	protected $fillable = [
 		'done',
 		'card',
+		'code'
 	];
 
 	protected $casts = [

@@ -52,6 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/contracts/{contract}/history', [HistoryController::class, 'index'])->name('contracts.history.index');
 	Route::get('/contracts/{contract}/history.data', [HistoryController::class, 'getData'])->name('contracts.history.index.data');
 	Route::post('/contracts/{contract}/history.export', [HistoryController::class, 'export'])->name('contracts.history.export');
+	Route::get('/contracts/{contract}/history/{history}', [HistoryController::class, 'show'])->name('contracts.history.show');
 });
 
 Route::group(['middleware' => 'web'], function () {

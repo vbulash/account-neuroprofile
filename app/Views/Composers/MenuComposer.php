@@ -30,7 +30,7 @@ class MenuComposer {
 				'title' => 'Результаты',
 				'link' => route('contracts.history.index', ['contract' => $contract->getKey()]),
 				'pattern' => [
-					route('contracts.history.index', ['contract' => $contract->getKey()])
+					route('contracts.history.index', ['contract' => $contract->getKey()]),
 				],
 			];
 		$result = [

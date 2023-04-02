@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contract;
+use App\Models\History;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -29,11 +30,15 @@ class HistoryController extends Controller {
 						return $values[$name];
 					});
 		$builder = $builder
-			->addColumn('action', function ($history) use ($fields) {
+			->addColumn('action', function ($history) use ($fields, $contract) {
+				$showRoute = route('contracts.history.show', [
+					'contract' => $contract,
+					'history' => $history->getKey()
+				]);
 				$items = [];
 				$items[] = [
 					'type' => 'item',
-					'link' => route('dashboard'), 'icon' => 'fas fa-tools', 'title' => 'Исправить'
+					'link' => $showRoute, 'icon' => 'fas fa-eye', 'title' => 'Просмотр'
 				];
 				return createDropdown('Действия', $items);
 			})
@@ -115,5 +120,23 @@ class HistoryController extends Controller {
 		} catch (\Exception $e) {
 		}
 		return true;
+	}
+
+	public function show(int $contract, int $history) {
+		$_contract = Contract::findOrFail($contract);
+		$_history = History::findOrFail($history);
+		$heading = sprintf("Результаты тестирования по договору № %s клиента &laquo;%s&raquo;",
+			$_contract->number, $_contract->client->getTitle()
+		);
+		$fields = $_contract->test->getCardFields();
+		$values = $_history->getCardValues($fields);
+
+		return view('history.show', [
+			'heading' => $heading,
+			'contract' => $_contract,
+			'history' => $_history,
+			'fields' => $fields,
+			'values' => $values
+		]);
 	}
 }
