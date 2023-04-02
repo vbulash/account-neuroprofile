@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * История прохождения тестирования
  *
  * @property \Datetime $done
+ * @property string $card
  */
 class History extends Model {
 	use HasFactory;
@@ -18,6 +19,7 @@ class History extends Model {
 
 	protected $fillable = [
 		'done',
+		'card',
 	];
 
 	protected $casts = [
@@ -30,5 +32,19 @@ class History extends Model {
 
 	public function test(): BelongsTo {
 		return $this->belongsTo(Test::class);
+	}
+
+	public function getCardValues(?array $fields): iterable {
+		$result = [];
+		if (!isset($fields))
+			return $result;
+		if (isset($this->card)) {
+			$card = json_decode($this->card, true);
+			foreach ($card as $key => $value) {
+				if (array_key_exists($key, $fields))
+					$result[$key] = $value;
+			}
+		}
+		return $result;
 	}
 }

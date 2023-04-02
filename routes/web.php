@@ -48,9 +48,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/contracts/{contract}/licenses.export', [LicenseController::class, 'export'])->name('contracts.licenses.export');
 	Route::post('/contracts/{contract}/licenses.repair', [LicenseController::class, 'repair'])->name('contracts.licenses.repair');
 	Route::post('/contracts/{contract}/licenses.info', [LicenseController::class, 'info'])->name('contracts.licenses.info');
-	// Результаты прохождения тестирования
+	// Результаты прохождения (история) тестирования
 	Route::get('/contracts/{contract}/history', [HistoryController::class, 'index'])->name('contracts.history.index');
 	Route::get('/contracts/{contract}/history.data', [HistoryController::class, 'getData'])->name('contracts.history.index.data');
+	Route::post('/contracts/{contract}/history.export', [HistoryController::class, 'export'])->name('contracts.history.export');
 });
 
 Route::group(['middleware' => 'web'], function () {
