@@ -46,7 +46,7 @@
 								<i class="fa fa-2x fa-chart-line text-primary-lighter"></i>
 							</div>
 							<div class="ms-3 text-end">
-								<p class="text-white fs-4 fw-medium mb-0">{{ $contract->number }}</p>
+								<p class="text-white fs-4 fw-medium mb-0">Договор № {{ $contract->number }}</p>
 								<p class="text-white fs-5 fw-medium mb-2">лицензий: {{ $contract->license_count }}</p>
 								<p class="text-white-75 mb-0">{{ $contract->start->format('d.m.Y') }} &gt;
 									{{ $contract->end->format('d.m.Y') }}

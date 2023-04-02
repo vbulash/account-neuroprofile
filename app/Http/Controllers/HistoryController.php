@@ -19,6 +19,13 @@ class HistoryController extends Controller {
 		$fields = $request->fields;
 		$query = $_contract->test->history;
 
+		$content = json_decode($_contract->test->content);
+		$maildata = [];
+		$maildata['show'] = $content->descriptions->show ?? false;
+		$maildata['mail'] = $content->descriptions->mail ?? false;
+		$maildata['client'] = $content->descriptions->client ?? false;
+		$maildata['branding'] = $content->branding ?? false;
+
 		$builder = DataTables::of($query)
 			->editColumn('done', fn($history) => $history->done->format('d.m.Y H:i:s'))
 			->editColumn('pkey', fn($history) => $history->license->pkey);
@@ -30,7 +37,7 @@ class HistoryController extends Controller {
 						return $values[$name];
 					});
 		$builder = $builder
-			->addColumn('action', function ($history) use ($fields, $contract) {
+			->addColumn('action', function ($history) use ($contract, $maildata) {
 				$showRoute = route('contracts.history.show', [
 					'contract' => $contract,
 					'history' => $history->getKey()
@@ -40,6 +47,22 @@ class HistoryController extends Controller {
 					'type' => 'item',
 					'link' => $showRoute, 'icon' => 'fas fa-eye', 'title' => 'Просмотр'
 				];
+
+				if ($maildata['mail'] != false || $maildata['client'] != false)
+					$items[] = ['type' => 'divider'];
+
+				if ($maildata['mail'] != false)
+					$items[] = [
+						'type' => 'item',
+						'link' => route('dashboard'), 'icon' => 'fas fa-user', 'title' => 'Повтор письма респонденту'
+					];
+
+				if ($maildata['client'] != false)
+					$items[] = [
+						'type' => 'item',
+						'link' => route('dashboard'), 'icon' => 'fas fa-building', 'title' => 'Повтор письма клиенту'
+					];
+
 				return createDropdown('Действия', $items);
 			})
 			->make(true);
