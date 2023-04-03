@@ -12,4 +12,8 @@ class Block extends Model {
 	public function profile(): BelongsTo {
 		return $this->belongsTo(Profile::class);
 	}
+
+	public function parent(): BelongsTo {
+		return $this->belongsTo(Block::class, 'block_id');
+	}
 }

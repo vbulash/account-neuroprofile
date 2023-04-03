@@ -17,11 +17,11 @@
 		};
 	@endphp
 	<h1>{{ $greeting }} {{ $card['Имя'] . ' ' . $card['Фамилия'] }}</h1>
-	<p>Вы прошли тестирование по тесту &laquo;{{ $history->test->name }}&raquo;</p>
+	<p>Респондент прошел тестирование по тесту &laquo;{{ $history->test->name }}&raquo;</p>
 @endif
 
 @if ($history->test->options & (\App\Models\TestOptions::AUTH_FULL->value | \App\Models\TestOptions::AUTH_MIX->value))
-	<h1>Перед прохождением теста вы ввели анкетные данные:</h1>
+	<h1>Перед прохождением респондент ввел анкетные данные:</h1>
 	<ul>
 		@foreach ($card as $key => $value)
 			@if (!$value)
@@ -33,9 +33,9 @@
 @endif
 
 <h1>
-	Результат вашего тестирования:
+	Результат тестирования респондента:
 </h1>
-<h4>Наименование нейропрофиля: {{ $profile->name }}</h4>
+<h4>Название нейропрофиля: {{ $profile->name }}</h4>
 
 @forelse($blocks  as $block)
 	@if ($block->type != \App\Models\BlockType::Image->value)

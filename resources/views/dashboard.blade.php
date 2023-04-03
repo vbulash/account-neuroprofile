@@ -17,20 +17,20 @@
 
 		<div class="block-content block-content-full p-4 row">
 			@foreach ($clients as $client)
-				<div class="col-md-6 col-xl-4">
-					<a class="block block-rounded block-link-shadow bg-primary"
-						href="{{ route('clients.show', ['client' => $client->getKey()]) }}">
-						<div class="block-content block-content-full d-flex align-items-center justify-content-between p-4">
-							<div>
-								<i class="fa fa-2x fa-building text-primary-lighter"></i>
-							</div>
-							<div class="ms-3 text-end">
-								<p class="text-white fs-4 fw-medium mb-0">Клиент &laquo;{{ $client->getTitle() }}</p>
-								<p class="text-white-75 mb-0">договоров с клиентом: {{ $client->contracts->count() }}</p>
-							</div>
+				<a class="block block-rounded block-link-shadow bg-primary col-md-6 col-xl-4 me-4"
+					href="{{ route('clients.show', ['client' => $client->getKey()]) }}">
+					<div class="block-content block-content-full d-flex align-items-center justify-content-between p-4">
+						<div>
+							<i class="fa fa-2x fa-building text-primary-lighter"></i>
 						</div>
-					</a>
-				</div>
+						<div class="ms-3 text-end">
+							<p class="text-white fs-4 fw-medium mb-0">Клиент &laquo;{{ $client->getTitle() }}</p>
+							<p class="text-white-75 mb-0">договоров с клиентом: {{ $client->contracts->count() }}</p>
+							<p class="text-white-75 mb-0">тестирований выполнено:
+								{{ App\Http\Controllers\DashboardController::historyCount($client->getKey()) }}</p>
+						</div>
+					</div>
+				</a>
 			@endforeach
 		</div>
 	</div>

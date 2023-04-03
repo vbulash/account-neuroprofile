@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\results\BlocksArea;
+use App\Http\Controllers\results\BlocksComposer;
+use App\Http\Controllers\results\CardComposer;
+use App\Mail\ClientMail;
+use App\Mail\RespondentMail;
 use App\Models\Contract;
 use App\Models\History;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Mailables\Address;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
@@ -42,6 +49,12 @@ class HistoryController extends Controller {
 					'contract' => $contract,
 					'history' => $history->getKey()
 				]);
+				$recipientFunc = sprintf("mailRecipient(%d, '%s')",
+					$history->getKey(), base64_encode(json_encode($maildata))
+				);
+				$clientFunc = sprintf("mailClient(%d, '%s')",
+					$history->getKey(), base64_encode(json_encode($maildata))
+				);
 				$items = [];
 				$items[] = [
 					'type' => 'item',
@@ -54,13 +67,13 @@ class HistoryController extends Controller {
 				if ($maildata['mail'] != false)
 					$items[] = [
 						'type' => 'item',
-						'link' => route('dashboard'), 'icon' => 'fas fa-user', 'title' => 'Повтор письма респонденту'
+						'click' => $recipientFunc, 'icon' => 'fas fa-user', 'title' => 'Повтор письма респонденту'
 					];
 
 				if ($maildata['client'] != false)
 					$items[] = [
 						'type' => 'item',
-						'link' => route('dashboard'), 'icon' => 'fas fa-building', 'title' => 'Повтор письма клиенту'
+						'click' => $clientFunc, 'icon' => 'fas fa-building', 'title' => 'Повтор письма клиенту'
 					];
 
 				return createDropdown('Действия', $items);
@@ -161,5 +174,67 @@ class HistoryController extends Controller {
 			'fields' => $fields,
 			'values' => $values
 		]);
+	}
+
+	public function mailRecipient(Request $request) {
+		$history = $request->history;
+		$maildata = json_decode(base64_decode($request->maildata));
+
+		$_history = History::findOrFail($history);
+
+		$card = (new CardComposer($_history))->getCard();
+		$composer = new BlocksComposer($_history);
+		$profile = $composer->getProfile(BlocksArea::MAIL);
+		$blocks = $composer->getBlocks($profile);
+
+		$recipient = new Address($card['Электронная почта'], join(' ', [$card['Фамилия'] ?? null, $card['Имя'] ?? null, $card['Отчество'] ?? null]));
+		$copy = new Address(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+
+		$branding = null;
+		if (isset($maildata) && is_object($maildata) && isset($maildata->branding) && !is_bool($maildata->branding))
+			$branding = $maildata->branding;
+		$testResult = new RespondentMail($_history, $blocks, $card, $profile, $branding);
+		try {
+			Mail::to($recipient)
+				->cc($copy)
+				->send($testResult);
+		} catch (\Exception $exc) {
+			session()->put('error', "Ошибка отправки письма с результатами тестирования:<br/>" .
+				$exc->getMessage());
+		}
+	}
+
+	public function mailClient(Request $request) {
+		$history = $request->history;
+		$maildata = json_decode(base64_decode($request->maildata));
+
+		$_history = History::findOrFail($history);
+
+		$card = (new CardComposer($_history))->getCard();
+		$composer = new BlocksComposer($_history);
+		$profile = $composer->getProfile(BlocksArea::CLIENT);
+		$blocks = $composer->getBlocks($profile);
+
+		$recipient = new Address(
+			$_history->test->contract->email ?? $_history->test->contract->client->email,
+			$_history->test->contract->client->name
+		);
+		$copy = new Address(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+
+		$branding = null;
+		if (isset($maildata) && is_object($maildata) && isset($maildata->branding) && !is_bool($maildata->branding))
+			$branding = $maildata->branding;
+		$testResult = new ClientMail($_history, $blocks, $card, $profile, $branding);
+		try {
+			Mail::to($recipient)
+				->cc($copy)
+				->send($testResult);
+		} catch (\Exception $exc) {
+			session()->put('error', "Ошибка отправки письма с результатами тестирования:<br/>" .
+				$exc->getMessage());
+		}
+
+
+
 	}
 }

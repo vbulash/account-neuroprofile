@@ -27,6 +27,62 @@
 
 @push('js_end')
 	<script>
+		function mailRecipient(history, maildata) {
+			$.ajax({
+				method: 'POST',
+				contentType: 'application/x-www-form-urlencoded',
+				url: "{{ route('contracts.history.mail.recipient') }}",
+				data: {
+					history: history,
+					maildata: maildata
+				},
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				beforeSend: () => {
+					Dashmix.helpers('jq-notify', {
+						from: 'bottom',
+						type: 'info',
+						icon: 'fa fa-info-circle me-2',
+						message: 'Отправка повторного письма респонденту..'
+					});
+				},
+				success: () => {
+					// statistics();
+					// window.datatable.ajax.reload();
+					// Dashmix.helpers('jq-notify');
+				}
+			});
+		}
+
+		function mailClient(history, maildata) {
+			$.ajax({
+				method: 'POST',
+				contentType: 'application/x-www-form-urlencoded',
+				url: "{{ route('contracts.history.mail.client') }}",
+				data: {
+					history: history,
+					maildata: maildata
+				},
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				beforeSend: () => {
+					Dashmix.helpers('jq-notify', {
+						from: 'bottom',
+						type: 'info',
+						icon: 'fa fa-info-circle me-2',
+						message: 'Отправка повторного письма клиенту..'
+					});
+				},
+				success: () => {
+					// statistics();
+					// window.datatable.ajax.reload();
+					// Dashmix.helpers('jq-notify');
+				}
+			});
+		}
+
 		$(function() {
 			window.datatable = $('#datatable').DataTable({
 				language: {

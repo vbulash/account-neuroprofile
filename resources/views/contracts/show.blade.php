@@ -41,6 +41,10 @@
 			<div class="d-flex flex-column justify-content-start align-items-start">
 				<h3 class="block-title">Статистика лицензий договора</h3>
 				<h3 class="block-title"><small>Всего лицензий: {{ $contract->license_count }}</small></h3>
+				<h3 class="block-title" id="broken"><small>Необходимо исправить поврежденные лицензии (ненулевые значения в
+						красных карточках ниже).<br />
+						Исправление случится автоматически в полночь, либо вы можете исправить лицензии (сделать
+						их свободными для использования) вручную</small></h3>
 			</div>
 			<div class="block-options">
 				<button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"><i
@@ -136,6 +140,7 @@
 					let titleColor = '';
 					let subTitleColor = '';
 					let infoRows = '';
+					let broken = false;
 
 					for (let index in data) {
 						switch (data[index].name) {
@@ -153,6 +158,7 @@
 								iconColor = 'text-white';
 								titleColor = 'text-white';
 								subTitleColor = 'text-white-75';
+								if (data[index].count > 0) broken = true;
 								break;
 							case "{{ App\Models\LicenseStatus::getName(App\Models\LicenseStatus::USED->value) }}":
 								background = 'bg-success';
@@ -184,6 +190,10 @@
 							</div>`;
 					}
 					$('#statistics').html(infoRows);
+					if (broken)
+						$('#broken').show();
+					else
+						$('#broken').hide();
 				}
 			});
 		}

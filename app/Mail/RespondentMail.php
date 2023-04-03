@@ -37,7 +37,7 @@ class RespondentMail extends Mailable {
 	 */
 	public function envelope(): Envelope {
 		return new Envelope(
-			subject: env('APP_NAME') . ' - индивидуальный результат тестирования',
+			subject: env('BASE_NAME') . ' - индивидуальный результат тестирования',
 		);
 	}
 

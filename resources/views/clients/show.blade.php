@@ -25,7 +25,7 @@
 	<div class="block block-rounded">
 		<div class="block-header block-header-default">
 			<div class="d-flex flex-column justify-content-start align-items-start">
-				<h3 class="block-title">Договора клиента</h3>
+				<h3 class="block-title">Договоры клиента</h3>
 				<h3 class="block-title"><small>Клик на карточку
 						{{ $client->contracts->count() == 1 ? 'договора' : 'одного из договоров' }} ниже для
 						работы с ним</small></h3>

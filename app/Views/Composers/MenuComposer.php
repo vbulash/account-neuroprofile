@@ -83,9 +83,6 @@ class MenuComposer {
 			foreach (Client::all()->sortBy('name') as $client)
 				$menu = array_merge($menu, $this->genForClient($client));
 
-		$menu[] = ['type' => 'heading', 'title' => 'More'];
-		$menu[] = ['type' => 'item', 'title' => 'Landing', 'icon' => 'fa fa-globe', 'link' => route('dashboard'), 'pattern' => route('dashboard')];
-
 		$view->with('menu', $menu);
 	}
 }
