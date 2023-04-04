@@ -20,9 +20,6 @@
   <script src="{{ asset('js/plugins/datatables-buttons-pdfmake/vfs_fonts.js') }}"></script>
   <script src="{{ asset('js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
   <script src="{{ asset('js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script> --}}
-
-	<!-- Page JS Code -->
-	{{-- @vite(['resources/js/pages/datatables.js']) --}}
 @endpush
 
 @section('content')

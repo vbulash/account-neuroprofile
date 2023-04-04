@@ -19,10 +19,10 @@
 
 	<!-- Modules -->
 	@yield('css')
-	{{-- @vite(['resources/sass/main.scss', 'resources/js/dashmix/app.js']) --}}
 
-	<!-- Alternatively, you can also include a specific color theme after the main stylesheet to alter the default color theme of the template -->
-	@vite(['resources/sass/main.scss', 'resources/sass/dashmix/themes/xsmooth.scss', 'resources/js/dashmix/app.js'])
+	<link rel="stylesheet" href="{{ mix('css/app.css') }}">
+	<link rel="stylesheet" href="{{ mix('css/xsmooth.css') }}">
+	<script src="{{ mix('js/app.js') }}" defer></script>
 	@yield('js')
 </head>
 
