@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Auth\RoleName;
 use App\Models\Client;
 use App\Rules\INNRule;
 use App\Rules\OGRNControlSumRule;
@@ -28,9 +29,9 @@ class ClientController extends Controller {
 	public function update(Request $request, int $client) {
 		$data = $request->except(['_token', '_method']);
 
-		Validator::make(
-		data: $data,
-		rules: [
+		$rules = [];
+		if (auth()->user()->hasRole(RoleName::ADMIN->value))
+			$rules = [
 				'name' => 'required',
 				'inn' => [
 					'bail',
@@ -47,8 +48,18 @@ class ClientController extends Controller {
 				'email' => [
 					'required',
 					'email'
-				],
-			],
+				]
+			];
+		elseif (auth()->user()->hasRole(RoleName::CLIENT_ADMIN->value))
+			$rules = [
+				'email' => [
+					'required',
+					'email'
+				]
+			];
+		Validator::make(
+		data: $data,
+		rules: $rules,
 		attributes: [
 				'name' => 'Наименование',
 				'inn' => 'ИНН',

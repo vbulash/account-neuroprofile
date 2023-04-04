@@ -2,12 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Auth\RoleName;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller {
 	public function index() {
+		if (!auth()->user()->hasRole(RoleName::ADMIN->value)) {
+			$allowed = new Collection();
+			foreach (Client::all()->sortBy('name') as $client)
+				if (auth()->user()->hasPermissionTo('clients.show.' . $client->getKey()))
+					$allowed->add($client);
+
+			if ($allowed->count() == 1)
+				return redirect()->route('clients.show', ['client' => $client->getKey()]);
+		}
+
 		$heading = 'Информация по клиентам';
 		$clients = Client::all()->sortBy('name');
 

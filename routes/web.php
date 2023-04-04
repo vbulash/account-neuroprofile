@@ -15,6 +15,7 @@ use App\Http\Controllers\ContractController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\LicenseController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ use App\Http\Controllers\LicenseController;
 */
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/}', [DashboardController::class, 'index'])->name(('dashboard'));
+	Route::get('/', [DashboardController::class, 'index'])->name(('dashboard'));
 
 	// Клиенты
 	Route::get('/clients/{client}', [ClientController::class, 'show'])->name(('clients.show'));
@@ -51,6 +52,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/contracts/{contract}/history/{history}', [HistoryController::class, 'show'])->name('contracts.history.show');
 	Route::post('/contracts/history.mail.recipient', [HistoryController::class, 'mailRecipient'])->name('contracts.history.mail.recipient');
 	Route::post('/contracts/history.mail.client', [HistoryController::class, 'mailClient'])->name('contracts.history.mail.client');
+
+	// Пользователь
+	Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+	Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
 });
 
 Route::group(['middleware' => 'web'], function () {

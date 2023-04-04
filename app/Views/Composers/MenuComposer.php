@@ -5,6 +5,7 @@ namespace App\Views\Composers;
 use App\Http\Controllers\Auth\RoleName;
 use App\Models\Client;
 use App\Models\Contract;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
@@ -78,10 +79,23 @@ class MenuComposer {
 		if (!Auth::check())
 			return;
 		$menu = [];
-		$menu[] = ['type' => 'item', 'title' => 'Главная', 'icon' => 'fa fa-home', 'link' => route('dashboard'), 'pattern' => [route('dashboard')]];
-		if (auth()->user()->hasRole(RoleName::ADMIN->value))
+		if (auth()->user()->hasRole(RoleName::ADMIN->value)) {
+			$menu[] = ['type' => 'item', 'title' => 'Главная', 'icon' => 'fa fa-home', 'link' => route('dashboard'), 'pattern' => [route('dashboard')]];
 			foreach (Client::all()->sortBy('name') as $client)
 				$menu = array_merge($menu, $this->genForClient($client));
+		} else {
+			$allowed = new Collection();
+			foreach (Client::all()->sortBy('name') as $client)
+				if (auth()->user()->hasPermissionTo('clients.show.' . $client->getKey()))
+					$allowed->add($client);
+
+			if ($allowed->count() > 1)
+				$menu[] = ['type' => 'item', 'title' => 'Главная', 'icon' => 'fa fa-home', 'link' => route('dashboard'), 'pattern' => [route('dashboard')]];
+
+			$allowed->map(function ($client) use (&$menu) {
+				$menu = array_merge($menu, $this->genForClient($client));
+			});
+		}
 
 		$view->with('menu', $menu);
 	}

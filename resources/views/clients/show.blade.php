@@ -4,8 +4,10 @@
 	<div class="block block-rounded block-mode-hidden">
 		<div class="block-header block-header-default">
 			<h3 class="block-title">Просмотр деталей клиента</h3>
-			<a href="{{ route('clients.edit', ['client' => $client->getKey()]) }}" class="btn btn-primary" role="button">Изменение
-				деталей клиента</a>
+			@canany(['clients.edit', 'clients.edit.' . $client->getKey()])
+				<a href="{{ route('clients.edit', ['client' => $client->getKey()]) }}" class="btn btn-primary" role="button">Изменение
+					деталей клиента</a>
+			@endcanany
 			<div class="block-options">
 				<button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"><i
 						class="si si-arrow-down"></i></button>

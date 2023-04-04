@@ -23,13 +23,9 @@
 			</div>
 		</div>
 		<div class="p-2">
-			{{-- <a class="dropdown-item"
-				href="{ route('admins.edit', [
-				    'admin' => auth()->user()->getKey(),
-				    'profile' => true,
-				]) }">
+			<a class="dropdown-item" href="{{ route('users.edit', ['user' => auth()->user()->getKey()]) }}">
 				<i class="far fa-fw fa-user me-1"></i> Профиль
-			</a> --}}
+			</a>
 
 			{{-- <div role="separator" class="dropdown-divider"></div> --}}
 			<a class="dropdown-item" href="{{ route('logout') }}">

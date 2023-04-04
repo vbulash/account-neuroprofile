@@ -33,12 +33,12 @@ class AuthenticatedSessionController extends Controller {
             $request->session()->regenerate();
             // session()->put('success', "Вы успешно авторизовались");
             // TODO Сделать интеллектуальную проверку допустимости входа в платформу
-            if (!auth()->user()->hasRole(RoleName::ADMIN->value)) {
-                auth()->logout();
-                $app = env('APP_NAME');
-                return redirect()->route('login')
-                    ->with('error', "У пользователя &laquo;{$request->email}&raquo; нет прав для входа в приложение &laquo;{$app}&raquo;");
-            }
+            // if (!auth()->user()->hasRole(RoleName::ADMIN->value)) {
+            //     auth()->logout();
+            //     $app = env('APP_NAME');
+            //     return redirect()->route('login')
+            //         ->with('error', "У пользователя &laquo;{$request->email}&raquo; нет прав для входа в приложение &laquo;{$app}&raquo;");
+            // }
 
             // Valery Bulash - intended гибко, но ненадежно - сброс сессии в неожиданных местах
             // return redirect()->intended();

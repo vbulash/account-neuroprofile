@@ -6,7 +6,7 @@
 		</label>
 		<div class="col-sm-5">
 			<textarea class="form-control" id="{{ $name }}" name="{{ $name }}" rows="{{ $rows ?? 5 }}"
-			 {{ isset($disabled) ? 'disabled' : '' }}>{!! $value ?? '' !!}</textarea>
+			 {{ isset($disabled) && $disabled == 'true' ? 'disabled' : '' }}>{!! $value ?? '' !!}</textarea>
 		</div>
 		{{ $slot }}
 	</div>

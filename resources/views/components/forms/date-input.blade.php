@@ -6,7 +6,8 @@
 		</label>
 		<div class="col-sm-5">
 			<input type="text" class="js-datepicker form-control" id="{{ $name }}" name="{{ $name }}"
-				autocomplete="off" value="{{ isset($value) ? $value : '' }}" {{ isset($disabled) ? 'disabled' : '' }} />
+				autocomplete="off" value="{{ isset($value) ? $value : '' }}"
+				{{ isset($disabled) && $disabled == 'true' ? 'disabled' : '' }} />
 		</div>
 		{{ $slot }}
 	</div>

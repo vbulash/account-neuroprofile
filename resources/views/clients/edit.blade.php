@@ -1,5 +1,10 @@
 @extends('layouts.page')
 
+@php
+	$accountManager = auth()
+	    ->user()
+	    ->hasRole(App\Http\Controllers\Auth\RoleName::CLIENT_ADMIN->value);
+@endphp
 @section('body')
 	<div class="block block-rounded">
 		<div class="block-header block-header-default d-flex flex-column align-items-start">
@@ -11,22 +16,31 @@
 				enctype="multipart/form-data">
 				@method('PUT')
 				@csrf
-				<x-forms.text-input name="name" title="Название клиента" value="{{ $client->name }}" required="true" />
-				<x-forms.text-input name="inn" title="ИНН клиента" value="{{ $client->inn }}" required="true">
+				<x-forms.text-input name="name" title="Название клиента" value="{{ $client->name }}" required="true"
+					disabled="{{ $accountManager ? 'true' : 'false' }}" />
+				<x-forms.text-input name="inn" title="ИНН клиента" value="{{ $client->inn }}" required="true"
+					disabled="{{ $accountManager ? 'true' : 'false' }}">
+					{!! $accountManager
+					    ? ''
+					    : '<div class="col-sm-4">
+																									<p><small>Строгие правила формирования, нельзя ввести произвольное значение. Структуру ИНН можно посмотреть <a
+																												href="http://www.consultant.ru/document/cons_doc_LAW_134082/947eeb5630c9f58cbc6103f0910440cef8eaccac/"
+																												target="_blank">здесь</a></small></p>
+																									' !!}
+				</x-forms.text-input>
+				<x-forms.text-input name="ogrn" title="ОГРН / ОРНИП клиента" value="{{ $client->ogrn }}" required="true"
+					disabled="{{ $accountManager ? 'true' : 'false' }}">
 					<div class="col-sm-4">
-						<p><small>Строгие правила формирования, нельзя ввести произвольное значение. Структуру ИНН можно посмотреть <a
-									href="http://www.consultant.ru/document/cons_doc_LAW_134082/947eeb5630c9f58cbc6103f0910440cef8eaccac/"
-									target="_blank">здесь</a></small></p>
+						{!! $accountManager
+						    ? ''
+						    : '<p><small>Строгие правила формирования, нельзя ввести произвольное значение. Структуру ОГРН / ОГРНИП можно
+																										посмотреть <a href="https://glavkniga.ru/situations/k505650" target="_blank">здесь</a></small></p>' !!}
 					</div>
 				</x-forms.text-input>
-				<x-forms.text-input name="ogrn" title="ОГРН / ОРНИП клиента" value="{{ $client->ogrn }}" required="true">
-					<div class="col-sm-4">
-						<p><small>Строгие правила формирования, нельзя ввести произвольное значение. Структуру ОГРН / ОГРНИП можно
-								посмотреть <a href="https://glavkniga.ru/situations/k505650" target="_blank">здесь</a></small></p>
-					</div>
-				</x-forms.text-input>
-				<x-forms.textarea-input name="address" title="Адрес" value="{{ $client->address }}" required="true" />
-				<x-forms.text-input name="phone" type="tel" title="Телефон" value="{{ $client->phone }}" />
+				<x-forms.textarea-input name="address" title="Адрес" value="{{ $client->address }}" required="true"
+					disabled="{{ $accountManager ? 'true' : 'false' }}" />
+				<x-forms.text-input name="phone" type="tel" title="Телефон" value="{{ $client->phone }}"
+					disabled="{{ $accountManager ? 'true' : 'false' }}" />
 				<x-forms.text-input name="email" type="email" title="Электронная почта" value="{{ $client->email }}"
 					required="true" />
 

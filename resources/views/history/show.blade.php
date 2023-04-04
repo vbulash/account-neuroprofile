@@ -21,7 +21,9 @@
 			<x-forms.text-input name="done" title="Дата и время тестирования"
 				value="{{ $history->done->format('d.m.Y H:i:s') }}" disabled="true" />
 			<x-forms.text-input name="pkey" title="Персональный ключ" value="{{ $history->license->pkey }}" disabled="true" />
-			<x-forms.text-input name="code" title="Вычисленный код результата" value="{{ $history->code }}" disabled="true" />
+			@can('test.code')
+				<x-forms.text-input name="code" title="Вычисленный код результата" value="{{ $history->code }}" disabled="true" />
+			@endcan
 
 			<div class="row">
 				<div class="col-sm-3">
