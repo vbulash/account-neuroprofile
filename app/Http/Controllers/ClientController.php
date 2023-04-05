@@ -69,6 +69,7 @@ class ClientController extends Controller {
 			]
 		)->validate();
 
+		$data['name'] = str_replace("'", '"', $data['name']);
 		$_client = Client::findOrFail($client);
 		$_client->update($data);
 

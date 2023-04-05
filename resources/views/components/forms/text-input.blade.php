@@ -6,8 +6,7 @@
 		</label>
 		<div class="col-sm-5">
 			<input type="{{ $type ?? 'text' }}" class="form-control" id="{{ $name }}" name="{{ $name }}"
-				autocomplete="off" value="{{ isset($value) ? $value : '' }}"
-				{{ isset($disabled) && $disabled == 'true' ? 'disabled' : '' }} />
+				autocomplete="off" value='{!! isset($value) ? $value : '' !!}' {{ isset($disabled) && $disabled == 'true' ? 'disabled' : '' }} />
 		</div>
 		{{ $slot }}
 	</div>
