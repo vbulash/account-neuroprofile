@@ -26,7 +26,7 @@ class MenuComposer {
 			'link' => route('contracts.licenses.index', ['contract' => $contract->getKey()]),
 			'pattern' => route('contracts.licenses.index', ['contract' => $contract->getKey()]),
 		];
-		if ($contract->test->history->count() > 0)
+		if ($contract->test != null && $contract->test->history->count() > 0)
 			$items[] = [
 				'title' => 'Результаты',
 				'link' => route('contracts.history.index', ['contract' => $contract->getKey()]),

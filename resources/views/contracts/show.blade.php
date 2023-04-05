@@ -41,7 +41,8 @@
 			<div class="d-flex flex-column justify-content-start align-items-start">
 				<h3 class="block-title">Статистика лицензий договора</h3>
 				<h3 class="block-title"><small>Всего лицензий: {{ $contract->license_count }}</small></h3>
-				<h3 class="block-title" id="broken"><small>Необходимо исправить поврежденные лицензии (ненулевые значения в
+				<h3 class="block-title" id="broken" style="display: none"><small>Необходимо исправить поврежденные лицензии
+						(ненулевые значения в
 						красных карточках ниже).<br />
 						Исправление случится автоматически в полночь, либо вы можете исправить лицензии (сделать
 						их свободными для использования) вручную</small></h3>
@@ -68,12 +69,12 @@
 		<div class="block-header block-header-default">
 			<div class="d-flex flex-column justify-content-start align-items-start">
 				<h3 class="block-title">Статистика
-					@if ($contract->test->history->count() > 0)
+					@if ($contract->test != null && $contract->test->history->count() > 0)
 						и динамика
 					@endif
 					прохождения тестирования
 				</h3>
-				@if ($contract->test->history->count() == 0)
+				@if ($contract->test == null || $contract->test->history->count() == 0)
 					<h3 class="block-title"><small>Тестирование пока не выполнялось, поэтому его результаты недоступны</small></h3>
 				@endif
 			</div>
@@ -92,7 +93,11 @@
 							</div>
 							<div class="ms-3 text-end">
 								<p class="text-white fs-3 fw-medium mb-0">
-									{{ $contract->test->history->count() }}
+									@if ($contract->test == null)
+										0
+									@else
+										{{ $contract->test->history->count() }}
+									@endif
 								</p>
 								<p class="text-white-75 mb-0" id="history-letter">
 								</p>
@@ -100,7 +105,7 @@
 						</div>
 					</div>
 				</div>
-				@if ($contract->test->history->count() > 0)
+				@if ($contract->test != null && $contract->test->history->count() > 0)
 					<div class="col-md-6 col-xl-9">
 						<div class="chart">
 							<canvas id="stackedBarChart" style="min-height:330px"></canvas>
@@ -108,7 +113,7 @@
 					</div>
 				@endif
 			</div>
-			@if ($contract->test->history->count() > 0)
+			@if ($contract->test != null && $contract->test->history->count() > 0)
 				<div class="row">
 					<div>
 						<a href="{{ route('contracts.history.index', ['contract' => $contract->getKey()]) }}"
@@ -122,7 +127,7 @@
 @endsection
 
 @push('js_end')
-	@if ($contract->test->history->count() > 0)
+	@if ($contract->test != null && $contract->test->history->count() > 0)
 		<script src="{{ asset('js/plugins/chart.js/chart.umd.js') }}"></script>
 	@endif
 	<script>
@@ -213,7 +218,7 @@
 			} else return 'тестирований выполнено'
 		}
 
-		@if ($contract->test->history->count() > 0)
+		@if ($contract->test != null && $contract->test->history->count() > 0)
 			function getDateString(date) {
 				let item = date.getDate().toString();
 				let result = (item.length == 1 ? '0' : '') + item + '.';
@@ -266,8 +271,12 @@
 
 		$(function() {
 			statistics();
-			$('#history-letter').html(testLetter({{ $contract->test->history->count() }}));
-			@if ($contract->test->history->count() > 0)
+			@if ($contract->test == null)
+				$('#history-letter').html(testLetter(0));
+			@else
+				$('#history-letter').html(testLetter({{ $contract->test->history->count() }}));
+			@endif
+			@if ($contract->test != null && $contract->test->history->count() > 0)
 				drawChart();
 			@endif
 		});

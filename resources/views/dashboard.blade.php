@@ -24,7 +24,7 @@
 							<i class="fa fa-2x fa-building text-primary-lighter"></i>
 						</div>
 						<div class="ms-3 text-end">
-							<p class="text-white fs-4 fw-medium mb-0">Клиент &laquo;{{ $client->getTitle() }}</p>
+							<p class="text-white fs-4 fw-medium mb-0">Клиент &laquo;{{ $client->getTitle() }}&raquo;</p>
 							<p class="text-white-75 mb-0">договоров с клиентом: {{ $client->contracts->count() }}</p>
 							<p class="text-white-75 mb-0">тестирований выполнено:
 								{{ App\Http\Controllers\DashboardController::historyCount($client->getKey()) }}</p>
