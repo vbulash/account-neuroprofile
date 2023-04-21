@@ -23,7 +23,7 @@
 	<link rel="stylesheet" href="{{ mix('css/app.css') }}">
 	<link rel="stylesheet" href="{{ mix('css/xsmooth.css') }}">
 	<script src="{{ mix('js/app.js') }}" defer></script>
-	@yield('js')
+	@stack('js')
 </head>
 
 <body>
@@ -84,6 +84,44 @@
 		<!-- END Main Container -->
 	</div>
 	<!-- END Page Container -->
+	<!-- jQuery (required for DataTables plugin) -->
+	<script src="{{ asset('js/lib/jquery.min.js') }}"></script>
+
+	<script src="{{ asset('js/plugins/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
+	<script src="{{ asset('js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+
+	<script>
+		jQuery(function() {
+			Dashmix.helpersOnLoad(['jq-notify', 'jq-datepicker']);
+			@php
+				if (is_string($errors)) {
+				    $errors = new Illuminate\Support\Collection($errors);
+				}
+			@endphp
+			@foreach ($errors->all() as $error)
+				Dashmix.helpers('jq-notify', {
+					from: 'bottom',
+					type: 'danger',
+					delay: 0,
+					icon: 'fas fa-ban me-2',
+					message: "{{ $error }}"
+				});
+			@endforeach
+			@if (session()->has('success'))
+				Dashmix.helpers('jq-notify', {
+					from: 'bottom',
+					type: 'success',
+					delay: 0,
+					icon: 'fas fa-check me-2',
+					message: "{{ session('success') }}"
+				});
+				@php
+					session()->forget('success');
+				@endphp
+			@endif
+		});
+	</script>
+	@stack('js_end')
 </body>
 
 </html>

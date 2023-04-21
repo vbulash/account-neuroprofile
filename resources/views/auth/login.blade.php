@@ -8,7 +8,7 @@
 			<!-- Page Content -->
 			<div class="bg-image" style="background-image: url('{{ asset('media/photos/moscow_city_12.jpeg', true) }}');">
 				<div class="row g-0 justify-content-center bg-primary-dark-op">
-					<div class="hero-static col-sm-8 col-md-6 col-xl-4 d-flex align-items-center p-2 px-sm-0">
+					<div class="hero-static col-sm-8 col-md-6 col-xl-5 d-flex align-items-center p-2 px-sm-0">
 						<!-- Sign In Block -->
 						<div class="block block-transparent block-rounded w-100 mb-0 overflow-hidden">
 							<div class="block-content block-content-full px-lg-5 px-xl-6 py-4 py-md-5 py-lg-6 bg-body-extra-light">

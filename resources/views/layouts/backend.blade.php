@@ -343,17 +343,20 @@
 	<script>
 		jQuery(function() {
 			Dashmix.helpersOnLoad(['jq-notify', 'jq-datepicker']);
-			@if ($errors->any())
-				@foreach ($errors->all() as $error)
-					Dashmix.helpers('jq-notify', {
-						from: 'bottom',
-						type: 'danger',
-						delay: 0,
-						icon: 'fas fa-ban me-2',
-						message: "{{ $error }}"
-					});
-				@endforeach
-			@endif
+			@php
+				if (is_string($errors)) {
+				    $errors = new Illuminate\Support\Collection($errors);
+				}
+			@endphp
+			@foreach ($errors->all() as $error)
+				Dashmix.helpers('jq-notify', {
+					from: 'bottom',
+					type: 'danger',
+					delay: 0,
+					icon: 'fas fa-ban me-2',
+					message: "{{ $error }}"
+				});
+			@endforeach
 			@if (session()->has('success'))
 				Dashmix.helpers('jq-notify', {
 					from: 'bottom',
