@@ -12,12 +12,15 @@ class DashboardController extends Controller {
 	public function index() {
 		if (!auth()->user()->hasRole(RoleName::ADMIN->value)) {
 			$allowed = new Collection();
+			$id = 0;
 			foreach (Client::all()->sortBy('name') as $client)
-				if (auth()->user()->hasPermissionTo('clients.show.' . $client->getKey()))
+				if (auth()->user()->hasPermissionTo('clients.show.' . $client->getKey())) {
 					$allowed->add($client);
+					$id = $client->getKey();
+				}
 
 			if ($allowed->count() == 1)
-				return redirect()->route('clients.show', ['client' => $client->getKey()]);
+				return redirect()->route('clients.show', ['client' => $id]);
 		}
 
 		$heading = 'Информация по клиентам';
