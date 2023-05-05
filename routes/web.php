@@ -12,7 +12,6 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ContractController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\LicenseController;
 use App\Http\Controllers\UserController;
@@ -29,7 +28,6 @@ use App\Http\Controllers\UserController;
 */
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/', [DashboardController::class, 'index'])->name(('dashboard'));
 
 	// Клиенты
 	Route::get('/clients/{client}', [ClientController::class, 'show'])->name(('clients.show'));

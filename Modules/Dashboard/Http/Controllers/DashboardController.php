@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Modules\Dashboard\Http\Controllers;
 
 use App\Http\Controllers\Auth\RoleName;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -26,7 +27,7 @@ class DashboardController extends Controller {
 		$heading = 'Информация по клиентам';
 		$clients = Client::all()->sortBy('name');
 
-		return view('dashboard', [
+		return view('dashboard::dashboard', [
 			'heading' => $heading,
 			'clients' => $clients
 		]);

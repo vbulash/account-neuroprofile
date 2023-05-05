@@ -1,0 +1,23 @@
+{
+    "name": "vbulash/account-neuroprofile.dashboard",
+    "description": "Панель управления личного кабинета нейропрофилирования",
+    "authors": [
+        {
+            "name": "Валерий Булаш",
+            "email": "vbulash@yandex.ru"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Dashboard\\": ""
+        }
+    }
+}

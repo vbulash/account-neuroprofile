@@ -14,32 +14,29 @@ use Illuminate\Support\Facades\Hash;
 use \Exception;
 use Spatie\Permission\Models\Permission;
 
-class RegisteredUserController extends Controller
-{
-    /**
-     * Display the registration view.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
+class RegisteredUserController extends Controller {
+	/**
+	 * Display the registration view.
+	 *
+	 * @return \Illuminate\View\View
+	 */
+	public function create() {
 		$roles = Role::where('selfassign', true)
 			->orderBy('name')
 			->pluck('name')
 			->toArray();
-        return view('auth.register', ['roles' => $roles]);
-    }
+		return view('auth.register', ['roles' => $roles]);
+	}
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function store(NewUserRequest $request)
-    {
+	/**
+	 * Handle an incoming registration request.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\RedirectResponse
+	 *
+	 * @throws \Illuminate\Validation\ValidationException
+	 */
+	public function store(NewUserRequest $request) {
 		$role = $request->role;
 		try {
 			$user = User::create([
@@ -48,7 +45,7 @@ class RegisteredUserController extends Controller
 				'password' => Hash::make($request->password),
 			]);
 			$user->assignRole($role);
-			if($request->role == 'Работодатель') {
+			if ($request->role == 'Работодатель') {
 				$this->addWildcard($user, 'employers.edit', $user->getKey());
 				$this->addWildcard($user, 'employers.show', $user->getKey());
 			} elseif ($request->role == 'Практикант') {
@@ -65,17 +62,16 @@ class RegisteredUserController extends Controller
 			session()->put('success',
 				"Зарегистрирован новый пользователь \"{$name}\" с ролью \"{$role}\"");
 
-			return redirect()->route('dashboard');
+			return redirect()->route('dashboard.home');
 		} catch (Exception $exc) {
 			session()->put('error',
 				"Ошибка регистрации нового пользователя: {$exc->getMessage()}");
 
 			return redirect()->route('register');
 		}
-    }
+	}
 
-	private function addWildcard(User $user, string $right, int $id)
-	{
+	private function addWildcard(User $user, string $right, int $id) {
 		if ($user->hasPermissionTo($right)) {
 			$permission = "{$right}.{$id}";
 			Permission::findOrCreate($permission);

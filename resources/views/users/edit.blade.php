@@ -28,7 +28,7 @@
 						&nbsp;</div>
 					<div class="col-sm-5">
 						<button type="submit" class="btn btn-primary">Сохранить</button>
-						<a class="btn btn-secondary pl-3" href="{{ route('dashboard') }}" role="button">Закрыть</a>
+						<a class="btn btn-secondary pl-3" href="{{ route('dashboard.home') }}" role="button">Закрыть</a>
 					</div>
 				</div>
 			</form>

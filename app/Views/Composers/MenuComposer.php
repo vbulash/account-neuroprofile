@@ -80,7 +80,7 @@ class MenuComposer {
 			return;
 		$menu = [];
 		if (auth()->user()->hasRole(RoleName::ADMIN->value)) {
-			$menu[] = ['type' => 'item', 'title' => 'Главная', 'icon' => 'fa fa-home', 'link' => route('dashboard'), 'pattern' => [route('dashboard')]];
+			$menu[] = ['type' => 'item', 'title' => 'Главная', 'icon' => 'fa fa-home', 'link' => route('dashboard.home'), 'pattern' => [route('dashboard.home')]];
 			foreach (Client::all()->sortBy('name') as $client)
 				$menu = array_merge($menu, $this->genForClient($client));
 		} else {
@@ -90,7 +90,7 @@ class MenuComposer {
 					$allowed->add($client);
 
 			if ($allowed->count() > 1)
-				$menu[] = ['type' => 'item', 'title' => 'Главная', 'icon' => 'fa fa-home', 'link' => route('dashboard'), 'pattern' => [route('dashboard')]];
+				$menu[] = ['type' => 'item', 'title' => 'Главная', 'icon' => 'fa fa-home', 'link' => route('dashboard.home'), 'pattern' => [route('dashboard.home')]];
 
 			$allowed->map(function ($client) use (&$menu) {
 				$menu = array_merge($menu, $this->genForClient($client));

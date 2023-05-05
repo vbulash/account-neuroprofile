@@ -45,7 +45,7 @@ class AuthenticatedSessionController extends Controller {
 
 			// Valery Bulash - intended гибко, но ненадежно - сброс сессии в неожиданных местах
 			// return redirect()->intended();
-			return redirect()->route('dashboard');
+			return redirect()->route('dashboard.home');
 		} catch (Exception $exc) {
 			return redirect()->route('login', [
 				'errors' => $exc->getMessage()

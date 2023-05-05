@@ -22,15 +22,15 @@ class UserController extends Controller {
 	public function update(Request $request, int $user) {
 		$data = $request->except(['_token', '_method']);
 		Validator::make(
-		data: $data,
-		rules: [
+			data: $data,
+			rules: [
 				'name' => [
 					'required',
 					'string', 'max:255',
 				],
 				'password' => ['confirmed'],
 			],
-		attributes: [
+			attributes: [
 				'name' => 'Фамилия, имя и отчество',
 				'password' => 'Пароль',
 			]
@@ -46,6 +46,6 @@ class UserController extends Controller {
 		$_user->update($draft);
 
 		session()->put('success', 'Профиль пользователя изменён');
-		return redirect()->route('dashboard');
+		return redirect()->route('dashboard.home');
 	}
 }
