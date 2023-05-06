@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3f3f3a105a4fc0b01cb36c4d0448e8c3",
+    "content-hash": "c27d89578791107551b2590dc749afa9",
     "packages": [
         {
             "name": "brick/math",
@@ -3487,16 +3487,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.11.16",
+            "version": "v0.11.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "151b145906804eea8e5d71fea23bfb470c904bfb"
+                "reference": "3dc5d4018dabd80bceb8fe1e3191ba8460569f0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/151b145906804eea8e5d71fea23bfb470c904bfb",
-                "reference": "151b145906804eea8e5d71fea23bfb470c904bfb",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/3dc5d4018dabd80bceb8fe1e3191ba8460569f0a",
+                "reference": "3dc5d4018dabd80bceb8fe1e3191ba8460569f0a",
                 "shasum": ""
             },
             "require": {
@@ -3557,9 +3557,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.11.16"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.11.17"
             },
-            "time": "2023-04-26T12:53:57+00:00"
+            "time": "2023-05-05T20:02:42+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -6115,6 +6115,95 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/2.2.6"
             },
             "time": "2023-01-03T09:29:04+00:00"
+        },
+        {
+            "name": "vbulash/account-neuroprofile.dashboard-module",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vbulash/account-neuroprofile.dashboard-module.git",
+                "reference": "7d6f88abcdf60bedd244a8936596556ed0ea6d13"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vbulash/account-neuroprofile.dashboard-module/zipball/7d6f88abcdf60bedd244a8936596556ed0ea6d13",
+                "reference": "7d6f88abcdf60bedd244a8936596556ed0ea6d13",
+                "shasum": ""
+            },
+            "require": {
+                "nwidart/laravel-modules": "^10.0"
+            },
+            "default-branch": true,
+            "type": "laravel-module",
+            "extra": {
+                "laravel": {
+                    "providers": [],
+                    "aliases": []
+                },
+                "module-name": "dashboard"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\Dashboard\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Валерий Булаш",
+                    "email": "vbulash@yandex.ru"
+                }
+            ],
+            "description": "Панель управления личного кабинета нейропрофилирования",
+            "support": {
+                "issues": "https://github.com/vbulash/account-neuroprofile.dashboard-module/issues",
+                "source": "https://github.com/vbulash/account-neuroprofile.dashboard-module/tree/main"
+            },
+            "time": "2023-05-06T13:42:40+00:00"
+        },
+        {
+            "name": "vbulash/laravel-module-installer",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vbulash/laravel-module-installer.git",
+                "reference": "574fd00985b7e872923a27c89aad9a402f3058b1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vbulash/laravel-module-installer/zipball/574fd00985b7e872923a27c89aad9a402f3058b1",
+                "reference": "574fd00985b7e872923a27c89aad9a402f3058b1",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^2.0",
+                "php": "7.* || 8.*"
+            },
+            "require-dev": {
+                "composer/composer": "^2.0",
+                "mockery/mockery": "~1.0",
+                "phpunit/phpunit": "~8.0 || ~9.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Joshbrw\\LaravelModuleInstaller\\LaravelModuleInstallerPlugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Joshbrw\\LaravelModuleInstaller\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "support": {
+                "source": "https://github.com/vbulash/laravel-module-installer/tree/v1.0"
+            },
+            "time": "2023-05-06T14:28:59+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -9267,7 +9356,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "vbulash/account-neuroprofile.dashboard-module": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

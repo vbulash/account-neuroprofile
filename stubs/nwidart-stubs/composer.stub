@@ -1,6 +1,7 @@
 {
     "name": "$VENDOR$/$LOWER_NAME$",
     "description": "",
+	"version": "1.0",
     "authors": [
         {
             "name": "$AUTHOR_NAME$",
@@ -13,7 +14,8 @@
             "aliases": {
 
             }
-        }
+        },
+		"module-name": "$STUDLY_NAME$"
     },
     "autoload": {
         "psr-4": {
