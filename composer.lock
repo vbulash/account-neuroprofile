@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c27d89578791107551b2590dc749afa9",
+    "content-hash": "0d2fd4f066733f71de343f9f47ce1ef1",
     "packages": [
         {
             "name": "brick/math",
@@ -6122,16 +6122,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/vbulash/account-neuroprofile.dashboard-module.git",
-                "reference": "7d6f88abcdf60bedd244a8936596556ed0ea6d13"
+                "reference": "e7eabd7acd75276287790c2a3f2f63aa2f01343b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vbulash/account-neuroprofile.dashboard-module/zipball/7d6f88abcdf60bedd244a8936596556ed0ea6d13",
-                "reference": "7d6f88abcdf60bedd244a8936596556ed0ea6d13",
+                "url": "https://api.github.com/repos/vbulash/account-neuroprofile.dashboard-module/zipball/e7eabd7acd75276287790c2a3f2f63aa2f01343b",
+                "reference": "e7eabd7acd75276287790c2a3f2f63aa2f01343b",
                 "shasum": ""
             },
             "require": {
-                "nwidart/laravel-modules": "^10.0"
+                "nwidart/laravel-modules": "^10.0",
+                "vbulash/laravel-module-installer": "^1.0"
             },
             "default-branch": true,
             "type": "laravel-module",
@@ -6162,7 +6163,7 @@
                 "issues": "https://github.com/vbulash/account-neuroprofile.dashboard-module/issues",
                 "source": "https://github.com/vbulash/account-neuroprofile.dashboard-module/tree/main"
             },
-            "time": "2023-05-06T13:42:40+00:00"
+            "time": "2023-05-08T13:21:27+00:00"
         },
         {
             "name": "vbulash/laravel-module-installer",
@@ -7673,16 +7674,16 @@
         },
         {
             "name": "phpunit/php-file-iterator",
-            "version": "4.0.1",
+            "version": "4.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-file-iterator.git",
-                "reference": "fd9329ab3368f59fe1fe808a189c51086bd4b6bd"
+                "reference": "5647d65443818959172645e7ed999217360654b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/fd9329ab3368f59fe1fe808a189c51086bd4b6bd",
-                "reference": "fd9329ab3368f59fe1fe808a189c51086bd4b6bd",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/5647d65443818959172645e7ed999217360654b6",
+                "reference": "5647d65443818959172645e7ed999217360654b6",
                 "shasum": ""
             },
             "require": {
@@ -7721,7 +7722,8 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-file-iterator/issues",
-                "source": "https://github.com/sebastianbergmann/php-file-iterator/tree/4.0.1"
+                "security": "https://github.com/sebastianbergmann/php-file-iterator/security/policy",
+                "source": "https://github.com/sebastianbergmann/php-file-iterator/tree/4.0.2"
             },
             "funding": [
                 {
@@ -7729,7 +7731,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-02-10T16:53:14+00:00"
+            "time": "2023-05-07T09:13:23+00:00"
         },
         {
             "name": "phpunit/php-invoker",
