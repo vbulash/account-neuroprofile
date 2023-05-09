@@ -15,6 +15,7 @@
         "predis/predis": "^2.1",
         "spatie/laravel-permission": "^5.10",
         "vbulash/account-neuroprofile.dashboard-module": "dev-main",
+        "vbulash/account-neuroprofile.licenses-module": "dev-main",
         "yajra/laravel-datatables": "^10.1"
     },
     "require-dev": {

@@ -13,7 +13,6 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\HistoryController;
-use App\Http\Controllers\LicenseController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -28,7 +27,7 @@ use App\Http\Controllers\UserController;
 */
 
 Route::group(['middleware' => 'auth'], function () {
-
+	// Панель управления - модуль dashboard
 	// Клиенты
 	Route::get('/clients/{client}', [ClientController::class, 'show'])->name(('clients.show'));
 	Route::get('/clients/{client}/edit', [ClientController::class, 'edit'])->name(('clients.edit'));
@@ -37,12 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/clients/{client}/contracts/{contract}', [ContractController::class, 'show'])->name('clients.contracts.show');
 	Route::get('/clients/{client}/contracts/{contract}/edit', [ContractController::class, 'edit'])->name('clients.contracts.edit');
 	Route::put('/clients/{client}/contracts/{contract}', [ContractController::class, 'update'])->name('clients.contracts.update');
-	// Лицензии контракта
-	Route::get('/contracts/{contract}/licenses', [LicenseController::class, 'index'])->name('contracts.licenses.index');
-	Route::get('/contracts/{contract}/licenses.data', [LicenseController::class, 'getData'])->name('contracts.licenses.index.data');
-	Route::post('/contracts/{contract}/licenses.export', [LicenseController::class, 'export'])->name('contracts.licenses.export');
-	Route::post('/contracts/{contract}/licenses.repair', [LicenseController::class, 'repair'])->name('contracts.licenses.repair');
-	Route::post('/contracts/{contract}/licenses.info', [LicenseController::class, 'info'])->name('contracts.licenses.info');
+	// Лицензии контракта - модуль licenses
 	// Результаты прохождения (история) тестирования
 	Route::get('/contracts/{contract}/history', [HistoryController::class, 'index'])->name('contracts.history.index');
 	Route::get('/contracts/{contract}/history.data', [HistoryController::class, 'getData'])->name('contracts.history.index.data');
