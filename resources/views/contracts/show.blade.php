@@ -222,7 +222,7 @@
 			function getDateString(date) {
 				let item = date.getDate().toString();
 				let result = (item.length == 1 ? '0' : '') + item + '.';
-				item = date.getMonth().toString();
+				item = (date.getMonth() + 1).toString();
 				result = result + (item.length == 1 ? '0' : '') + item + '.' + date.getFullYear();
 				return result;
 			}

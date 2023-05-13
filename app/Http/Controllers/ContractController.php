@@ -44,7 +44,7 @@ WHERE
 	AND `tests`.`contract_id` = `contracts`.id
 	AND `contracts`.id = :contract
 GROUP BY `date`
-ORDER BY `date` ASC
+ORDER BY `date` DESC
 LIMIT 14
 EOS,
 			['contract' => $contract]
@@ -55,7 +55,7 @@ EOS,
 		return view('contracts.show', [
 			'heading' => $heading,
 			'contract' => $_contract,
-			'reports' => $data,
+			'reports' => array_reverse($data),
 		]);
 	}
 
@@ -74,15 +74,15 @@ EOS,
 		$data = $request->except(['_token', '_method']);
 
 		Validator::make(
-		data: $data,
-		rules: [
+			data: $data,
+			rules: [
 				'number' => 'required',
 				'invoice' => 'required',
 				'start' => 'required|date',
 				'end' => 'required|date|after:start',
 				'url' => 'required|url'
 			],
-		attributes: [
+			attributes: [
 				'number' => 'Номер договора',
 				'invoice' => 'Номер оплаченного счета',
 				'start' => 'Дата начала договора',
