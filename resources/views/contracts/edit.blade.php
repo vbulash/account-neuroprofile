@@ -44,7 +44,7 @@
 				<x-forms.text-input name="email" type="email" title="Электронная почта договора"
 					value="{{ $contract->email }}" />
 				<x-forms.text-input name="url" type="url" title="URL страницы сайта из договора"
-					value="{{ $contract->url }}" required="true"disabled="{{ $accountManager ? 'true' : 'false' }}" />
+					value="{{ $contract->url }}" required="true" disabled="{{ $accountManager ? 'true' : 'false' }}" />
 				<x-forms.text-input name="mkey" title="Мастер-ключ договора" value="{{ $contract->mkey }}" disabled="true" />
 
 				<div class="row">

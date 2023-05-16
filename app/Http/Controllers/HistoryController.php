@@ -61,9 +61,14 @@ class HistoryController extends Controller {
 					'link' => $showRoute, 'icon' => 'fas fa-eye', 'title' => 'Просмотр'
 				];
 
-				if ($maildata['mail'] != false || $maildata['client'] != false)
+				if ($maildata['show'] != false || $maildata['mail'] != false || $maildata['client'] != false)
 					$items[] = ['type' => 'divider'];
 
+				if ($maildata['show'] != false)
+					$items[] = [
+						'type' => 'item',
+						'click' => "javascript:void(0)", 'icon' => 'fas fa-eye', 'title' => 'Просмотр результатов тестирования'
+					];
 				if ($maildata['mail'] != false)
 					$items[] = [
 						'type' => 'item',

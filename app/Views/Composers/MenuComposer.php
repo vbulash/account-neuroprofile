@@ -83,6 +83,7 @@ class MenuComposer {
 			$menu[] = ['type' => 'item', 'title' => 'Главная', 'icon' => 'fa fa-home', 'link' => route('dashboard.home'), 'pattern' => [route('dashboard.home')]];
 			foreach (Client::all()->sortBy('name') as $client)
 				$menu = array_merge($menu, $this->genForClient($client));
+			$menu[] = ['type' => 'item', 'title' => 'Laravel Telescope', 'icon' => 'fa fa-gear', 'link' => '/telescope', 'pattern' => []];
 		} else {
 			$allowed = new Collection();
 			foreach (Client::all()->sortBy('name') as $client)
